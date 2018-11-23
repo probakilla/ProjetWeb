@@ -12,7 +12,10 @@
   - [Sujet](#sujet)
     - [Sujet du prof](#sujet-du-prof)
     - [Modalités](#modalit%C3%A9s)
+<<<<<<< HEAD
     - [Api tierce](#api-tierce)
+=======
+>>>>>>> Ajout du dossier public et completion du README.md
 
 ## Sepcs
 
@@ -30,11 +33,20 @@
   |    +---views/
   |    |
   |    +---models/
+  |    |
+  |    +---public/
   |
   +---tests/
   |
   +---resources/
 ```
+
+- src : Code source du projet
+  - views : templates ejs
+  - models : partie back du projet (serveur node.js)
+  - public : partie front du projet (pages html)
+- tests : fichiers de test du projet
+- resources : resources du projet (packages etc...)
 
 ## Installation
 
