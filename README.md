@@ -6,16 +6,14 @@
   - [Table of Contents](#table-of-contents)
   - [Sepcs](#sepcs)
   - [Organisation du dépôt](#organisation-du-d%C3%A9p%C3%B4t)
+  - [Modules](#modules)
   - [Installation](#installation)
   - [Utilisation](#utilisation)
   - [Enoncé](#enonc%C3%A9)
   - [Sujet](#sujet)
     - [Sujet du prof](#sujet-du-prof)
     - [Modalités](#modalit%C3%A9s)
-<<<<<<< HEAD
     - [Api tierce](#api-tierce)
-=======
->>>>>>> Ajout du dossier public et completion du README.md
 
 ## Sepcs
 
@@ -47,6 +45,11 @@
   - public : partie front du projet (pages html)
 - tests : fichiers de test du projet
 - resources : resources du projet (packages etc...)
+
+## Modules
+
+- express
+- react
 
 ## Installation
 

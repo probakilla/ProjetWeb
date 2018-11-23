@@ -1,0 +1,27 @@
+{
+  "name": "projetweb",
+  "version": "1.0.0",
+  "description": "## Table of Contents",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/probakilla/ProjetWeb.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/probakilla/ProjetWeb/issues"
+  },
+  "homepage": "https://github.com/probakilla/ProjetWeb#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "jade": "^1.11.0",
+    "react": "^16.6.3"
+  }
+}
