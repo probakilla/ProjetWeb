@@ -12,10 +12,7 @@
   - [Sujet](#sujet)
     - [Sujet du prof](#sujet-du-prof)
     - [Modalités](#modalit%C3%A9s)
-<<<<<<< HEAD
     - [Api tierce](#api-tierce)
-=======
->>>>>>> Ajout du dossier public et completion du README.md
 
 ## Sepcs
 
