@@ -3,15 +3,16 @@
 ## Table of Contents
 
 - [README](#readme)
-    - [Table of Contents](#table-of-contents)
-    - [Sepcs](#sepcs)
-    - [Organisation du dépôt](#organisation-du-d%C3%A9p%C3%B4t)
-    - [Installation](#installation)
-    - [Utilisation](#utilisation)
-    - [Enoncé](#enonc%C3%A9)
-    - [Sujet](#sujet)
-        - [Sujet du prof](#sujet-du-prof)
-        - [Modalités](#modalit%C3%A9s)
+  - [Table of Contents](#table-of-contents)
+  - [Sepcs](#sepcs)
+  - [Organisation du dépôt](#organisation-du-d%C3%A9p%C3%B4t)
+  - [Installation](#installation)
+  - [Utilisation](#utilisation)
+  - [Enoncé](#enonc%C3%A9)
+  - [Sujet](#sujet)
+    - [Sujet du prof](#sujet-du-prof)
+    - [Modalités](#modalit%C3%A9s)
+    - [Api tierce](#api-tierce)
 
 ## Sepcs
 
@@ -69,3 +70,7 @@ sujet reste assez libre.
 Apparemment faut faire de la gestion de projet, il faut définir le cahier des
 charges. Lundi 19, présenter le "cahier des charges" du projet que l'on a
 choisi.
+
+### Api tierce
+
+- Utilisation de l'api [HAL](https://api.archives-ouvertes.fr/docs/)
