@@ -1,5 +1,7 @@
 # README
 
+TODO badges
+
 ## Table of Contents
 
 - [README](#readme)
@@ -9,11 +11,13 @@
   - [Modules](#modules)
   - [Installation](#installation)
   - [Utilisation](#utilisation)
+  - [Specs base de données](#specs-base-de-donn%C3%A9es)
   - [Enoncé](#enonc%C3%A9)
   - [Sujet](#sujet)
     - [Sujet du prof](#sujet-du-prof)
     - [Modalités](#modalit%C3%A9s)
     - [Api tierce](#api-tierce)
+  - [Oauht2](#oauht2)
 
 ## Sepcs
 
@@ -59,6 +63,10 @@ TODO
 
 TODO
 
+## Specs base de données
+
+TODO
+
 ## Enoncé
 
 Réaliser une app web avec un front avec un frameword genre _React_, _Angular_,
@@ -89,3 +97,16 @@ choisi.
 ### Api tierce
 
 - Utilisation de l'api [HAL](https://api.archives-ouvertes.fr/docs/)
+
+## Oauht2
+
+nécessiter à authoriser l'api à utiliser l'api d'une application (Facebook)
+graĉe à des token. En gros ça délègue l'identification à une api tierce.
+
+modules nodes pour Oauth2:
+
+- jsonwebtoken
+- passport
+
+Second trick, possibilité de créer son propre serveur d'authentification sur
+d'autre services
