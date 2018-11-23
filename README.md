@@ -4,10 +4,44 @@
 
 - [README](#readme)
     - [Table of Contents](#table-of-contents)
+    - [Sepcs](#sepcs)
+    - [Organisation du dépôt](#organisation-du-d%C3%A9p%C3%B4t)
+    - [Installation](#installation)
+    - [Utilisation](#utilisation)
     - [Enoncé](#enonc%C3%A9)
     - [Sujet](#sujet)
         - [Sujet du prof](#sujet-du-prof)
         - [Modalités](#modalit%C3%A9s)
+
+## Sepcs
+
+- Base de données : mongodb, mlab
+- travis
+- sonarcloud
+
+## Organisation du dépôt
+
+```
+  ProjetWeb
+  |
+  +---src/
+  |    |
+  |    +---views/
+  |    |
+  |    +---models/
+  |
+  +---tests/
+  |
+  +---resources/
+```
+
+## Installation
+
+TODO
+
+## Utilisation
+
+TODO
 
 ## Enoncé
 
