@@ -1,0 +1,21 @@
+sudo: required
+dist: trusty
+
+addons:
+  sonarcloud:
+    organization: "probakilla-github"
+
+notifications:
+  email: false
+
+language: node_js
+jdk:
+  - oraclejdk8
+node_js: "11"
+
+before_script:
+  - npm install
+
+script:
+  - sonar-scanner
+  - curl localhost:8888
