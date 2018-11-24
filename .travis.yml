@@ -17,4 +17,15 @@ before_script:
   - npm install
 
 script:
+  - pm2 start src/app.js
   - sonar-scanner
+  - curl localhost:8888
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: "18132432-2a1d-445c-8fa0-3d268e5ab105"
+
+
+after_script:
+  - pm2 stop src/app.js
