@@ -1,6 +1,15 @@
 # README
 
-TODO badges
+Badge Travis
+
+[![Build Status](https://travis-ci.org/probakilla/ProjetWeb.svg?branch=master)](https://travis-ci.org/probakilla/ProjetWeb)
+
+Badges SonarCloud
+
+[![Quality
+gate](https://sonarcloud.io/api/project_badges/measure?project=web%3Apipin&metric=alert_status)](https://sonarcloud.io/dashboard?id=web%3Apipin)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=web%3Apipin&metric=bugs)](https://sonarcloud.io/dashboard?id=web%3Apipin)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=web%3Apipin&metric=code_smells)](https://sonarcloud.io/dashboard?id=web%3Apipin)
 
 ## Table of Contents
 
