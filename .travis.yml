@@ -1,31 +1,23 @@
 sudo: required
 dist: trusty
-
 addons:
   sonarcloud:
-    organization: "probakilla-github"
-
+    organization: probakilla-github
 notifications:
   email: false
-
 language: node_js
 jdk:
-  - oraclejdk8
-node_js: "11"
-
+- oraclejdk8
+node_js: '11'
 before_script:
-  - npm install
-
+- npm install
 script:
-  - pm2 start src/app.js
-  - sonar-scanner
-  - curl localhost:8888
-
+- pm2 start src/app.js
+- sonar-scanner
+- curl localhost:8888
 deploy:
   provider: heroku
   api_key:
-    secure: "18132432-2a1d-445c-8fa0-3d268e5ab105"
-
-
+    secure: b3jF1GJTRume6oDigOCdzGbeavEMKI5kbGU56Bnn5OW5bnt8AXkJUZtr23ESTMA20HBmxaqnYX7yhuHpY+6kSca2J/rCKDEetMLIAATAODxf5+wYIPPTBnCTzQ6d2ojaRukid4464zFSvkd3T21dt4CQ3i2bRUI82975NYtcYG4d8+iKHytrbAdmUsYFL4jIVUoSmtRryBpC2X7UaIWVvjlhptUeNfnenjHCd7NIugKPmDQ2iB6eWmvAkXauJ2Q6bOoUrhNtAnqkUhrO/+7n7LDbNU4Wj6X2xV5HUMYQneInOWVOsNqDG6DDkYQomKIcATCVPF5in5bppSsvloNww2c8PCTFQ+Xj9fosLy/DcNGeA4lreygi05YY5lBNWyDIOHzK268Zkk71DuR+BuG6vicmw9ekUHT4RCLiPFC4PG/O7kXqAoQTfljakh4KUX5irSZztAEUZOTHcfWvA1KUXvZ0PuMRR35N96yUCmisMewiqXEBUzQgIOw+yX9O8/fKasA7G7Nv13JhS7esgow3gVCdswueLHeJtRQ43QxUKnr1blndhB+vMRS6vETVHwgXiZGEzMy6BwjJE4PtRdsK0mIwdWrXR7dwZtK0kYHXYG9aBW5G6C9iB/5+OzzcLWEysgxIoI/2HycUQDjc3VnCLRcKN7zCIkTeSKgmHWlOqQA=
 after_script:
-  - pm2 stop src/app.js
+- pm2 stop src/app.js
