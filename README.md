@@ -27,6 +27,7 @@ gate](https://sonarcloud.io/api/project_badges/measure?project=web%3Apipin&metri
     - [Modalités](#modalit%C3%A9s)
     - [Api tierce](#api-tierce)
   - [Oauht2](#oauht2)
+  - [Champ de l'api à considérer](#champ-de-lapi-%C3%A0-consid%C3%A9rer)
 
 ## Sepcs
 
@@ -119,3 +120,20 @@ modules nodes pour Oauth2:
 
 Second trick, possibilité de créer son propre serveur d'authentification sur
 d'autre services
+
+## Champ de l'api à considérer
+
+- anrProject_t
+- collaboration_s
+- country_s ?
+- deptStruct*
+- europeanProject_t
+- instStructCountry_s ?
+- structure_t
+- __labStruct*__
+- __rgrLabStruc*__
+- rteamStruct*
+- modifiedDate
+- submitedDate
+- writingDate
+- text
