@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
-import "../css/navbar.css"
+import "../css/navbar.css";
 
 class HomeNavbar extends Component {
   constructor() {
@@ -22,8 +21,5 @@ class HomeNavbar extends Component {
     );
   }
 }
-
-const wrapper = document.getElementById("navbar-container");
-wrapper ? ReactDOM.render(<HomeNavbar />, wrapper) : false;
 
 export default HomeNavbar;

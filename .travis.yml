@@ -14,7 +14,6 @@ before_script:
 script:
 - pm2 start src/app.js
 - sonar-scanner
-- curl localhost:8888
 deploy:
   provider: heroku
   api_key:
