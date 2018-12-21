@@ -124,7 +124,7 @@ d'autre services
 ## Champ de l'api à considérer
 
 - anrProject_t
-- collaboration_s
+- __collaboration_s__
 - country_s ?
 - deptStruct*
 - europeanProject_t
