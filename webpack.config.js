@@ -32,6 +32,10 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: "./src/index.html",
       filename: "./index.html"
+    }),
+    new HtmlWebPackPlugin({
+      template: "./src/public/connection.html",
+      filename: "connection.html"
     })
   ]
 };

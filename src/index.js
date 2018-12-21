@@ -4,15 +4,14 @@ import HomeNavbar from "./jsx/navbar";
 import WorldMap from "./jsx/map";
 import BrandButton from "./jsx/button";
 
-
-function sayHi() {
-    alert("Hi !")
+function redirectionConnection() {
+  location.href = "connection.html";
 }
 
 display(
   <HomeNavbar
     brandName="Page d'accueil"
-    rightBtn={<BrandButton text="bonjour" action={sayHi}/>}
+    rightBtn={<BrandButton text="bonjour" action={redirectionConnection} />}
   />,
   "navbar-container"
 );
