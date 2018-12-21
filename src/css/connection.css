@@ -1,4 +1,11 @@
-.centered {
-    margin: auto;
-    max-width: 300px
+.top-space {
+    margin-top: 8rem;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.left-spacing {
+    margin-left: 1rem;
 }
