@@ -1,12 +1,20 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "../css/navbar.css";
 
 class HomeNavbar extends Component {
-  constructor() {
-    super();
+  static get propTypes() {
+    return {
+      brandName: PropTypes.string,
+      rightBtn: PropTypes.element
+    }
+  }
+
+  constructor(props) {
+    super(props);
     this.state = {
-      brand: "HELLO THERE",
-      nav_text: "GENERAL KENOBI"
+      brand: props.brandName,
+      navBtn: props.rightBtn
     };
   }
 
@@ -14,9 +22,9 @@ class HomeNavbar extends Component {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light nav-margin">
         <a className="navbar-brand" href="#">
-          {this.state.brand}
+          {this.props.brandName}
         </a>
-        <span className="navbar-text ml-auto">{this.state.nav_text}</span>
+        <span className="navbar-text ml-auto">TODO : BTN</span>
       </nav>
     );
   }
