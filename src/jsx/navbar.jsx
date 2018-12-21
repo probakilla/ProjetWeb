@@ -7,7 +7,7 @@ class HomeNavbar extends Component {
     return {
       brandName: PropTypes.string,
       rightBtn: PropTypes.element
-    }
+    };
   }
 
   constructor(props) {
@@ -24,7 +24,7 @@ class HomeNavbar extends Component {
         <a className="navbar-brand" href="#">
           {this.props.brandName}
         </a>
-        <span className="navbar-text ml-auto">TODO : BTN</span>
+        <span className="navbar-text ml-auto">{this.state.navBtn}</span>
       </nav>
     );
   }
