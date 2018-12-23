@@ -20,7 +20,7 @@ class HomeNavbar extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light nav-margin">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark nav-margin">
         <a className="navbar-brand" href="#">
           {this.props.brandName}
         </a>

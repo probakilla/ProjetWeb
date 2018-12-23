@@ -2,8 +2,9 @@ import React from "react";
 import display from "./jsx/display";
 import HomeNavbar from "./jsx/navbar";
 import WorldMap from "./jsx/map";
-import BrandButton from "./jsx/button";
-import ConnectionForm from "./jsx/form"
+import Button from "./jsx/button";
+import ConnectionForm from "./jsx/form";
+import "./css/button.css"
 
 function redirectionConnection() {
   location.href = "connection.html";
@@ -12,11 +13,16 @@ function redirectionConnection() {
 display(
   <HomeNavbar
     brandName="Page d'accueil"
-    rightBtn={<BrandButton text="bonjour" action={redirectionConnection} />}
+    rightBtn={
+      <Button
+        text="Connection"
+        action={redirectionConnection}
+        style="btn btn-link white-link"
+      />
+    }
   />,
   "navbar-container"
 );
 
 display(<WorldMap />, "map-col");
-
-display(<ConnectionForm />, "form-col")
+display(<ConnectionForm />, "form-col");

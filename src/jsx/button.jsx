@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-class BrandButton extends Component {
+class Button extends Component {
   static get propTypes() {
     return {
       text: PropTypes.string,
-      action: PropTypes.func
+      action: PropTypes.func,
+      style: PropTypes.string
     };
   }
 
@@ -13,7 +14,8 @@ class BrandButton extends Component {
     super(props);
     this.state = {
       text: props.text,
-      action: props.action
+      action: props.action,
+      style: props.style
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -25,7 +27,7 @@ class BrandButton extends Component {
   render() {
     return (
       <button
-        className="btn-link"
+        className={this.state.style}
         onClick={this.handleClick}
       >
         {this.state.text}
@@ -34,4 +36,4 @@ class BrandButton extends Component {
   }
 }
 
-export default BrandButton;
+export default Button;

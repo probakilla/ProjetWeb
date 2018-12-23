@@ -1,5 +1,14 @@
 import React, { Component } from "react";
+import Button from "./button";
 import "../css/connection.css";
+
+function goBackHome() {
+  location.href = "index.html";
+}
+
+function connect() {
+  alert("Not implemented yet!");
+}
 
 class ConnectionForm extends Component {
   constructor() {
@@ -8,8 +17,7 @@ class ConnectionForm extends Component {
       cardTitle: "Connexion",
       unameForm: "Nom d'utilisateur",
       passwordForm: "Mot de passe",
-      submitBtnText: "Envoyer",
-      cancelBtnText: "Retour"
+      submitBtnText: "Envoyer"
     };
   }
 
@@ -27,7 +35,6 @@ class ConnectionForm extends Component {
                 className="form-control"
                 placeholder="..."
               />
-              <small id="username-help" className="form-text text-muted" />
             </div>
             <div className="form-group">
               <label htmlFor="input-password">{this.state.passwordForm}</label>
@@ -38,10 +45,12 @@ class ConnectionForm extends Component {
                 placeholder="..."
               />
             </div>
-            <button className="btn-primary">{this.state.submitBtnText}</button>
-            <button className="btn-danger left-spacing">
-              {this.state.cancelBtnText}
-            </button>
+            <Button text="Envoi" action={connect} style="btn btn-primary" />
+            <Button
+              text="Retour"
+              action={goBackHome}
+              style="btn btn-danger left-spacing"
+            />
           </div>
         </div>
       </div>
