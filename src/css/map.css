@@ -1,9 +1,20 @@
 .leaflet-container {
-  height: 680px;
-  width: 80%;
+  height: 600px;
+  width: 90%;
   margin: 0 auto;
 }
 
 .filter-margin {
-  margin-left: -5rem;
+  margin-left: -3rem;
+}
+
+.footer {
+  margin-top: 3rem;
+  padding-bottom: 3rem;
+  padding-top: 1rem;
+}
+
+.footer-text {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
