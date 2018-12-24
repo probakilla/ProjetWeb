@@ -6,8 +6,7 @@ class TextInput extends Component {
     return {
       id: PropTypes.string,
       type: PropTypes.string,
-      labelText: PropTypes.string,
-      placeholder: PropTypes.string
+      labelText: PropTypes.string
     };
   }
 
@@ -16,8 +15,7 @@ class TextInput extends Component {
     this.state = {
       id: props.id,
       inputType: props.type,
-      labelText: props.labelText,
-      placeholder: props.placeholder
+      labelText: props.labelText
     };
   }
 
@@ -29,11 +27,62 @@ class TextInput extends Component {
           id={this.state.id}
           type={this.state.inputType}
           className="form-control"
-          placeholder={this.state.placeholder}
         />
       </div>
     );
   }
 }
 
-export default TextInput;
+class ConnectionInputs extends Component {
+  constructor() {
+    super();
+  }
+
+  render() {
+    return (
+      <form>
+        <TextInput
+          id="input-username"
+          type="text"
+          labelText="Nom d'utilisateur"
+        />
+        <TextInput
+          id="input-password"
+          type="password"
+          labelText="Mot de passe"
+        />
+      </form>
+    );
+  }
+}
+
+class InformationInputs extends Component {
+  constructor() {
+    super();
+  }
+
+  render() {
+    return (
+      <form>
+        <TextInput
+          id="input-username"
+          type="text"
+          labelText="Nom d'utilisateur"
+        />
+        <TextInput
+          id="input-password"
+          type="password"
+          labelText="Mot de passe"
+        />
+        <TextInput id="input-lab" type="text" labelText="Nom du laboratoire" />
+        <TextInput
+          id="input-team"
+          type="text"
+          labelText="Nom de l'équipe de recherche"
+        />
+      </form>
+    );
+  }
+}
+
+export { TextInput, ConnectionInputs, InformationInputs };

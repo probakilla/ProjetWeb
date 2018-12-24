@@ -1,26 +1,23 @@
 import React, { Component } from "react";
-import Button from "./button";
-import TextInput from "./input";
+import PropTypes from "prop-types";
 import "../css/connection.css";
 
-class ConnectionForm extends Component {
-  constructor() {
-    super();
-    this.state = {
-      cardTitle: "Connexion",
-      unameForm: "Nom d'utilisateur",
-      passwordForm: "Mot de passe",
-      submitBtnText: "Envoi",
-      cancelBtnText: "Retour"
+class FormUser extends Component {
+  static get propTypes() {
+    return {
+      buttons: PropTypes.element,
+      forms: PropTypes.element,
+      cardTitle: PropTypes.string
     };
   }
 
-  goBackHome() {
-    location.href = "index.html";
-  }
-
-  connect() {
-    alert("Not implemented yet!");
+  constructor(props) {
+    super(props);
+    this.state = {
+      buttons: props.buttons,
+      forms: props.forms,
+      cardTitle: props.cardTitle
+    };
   }
 
   render() {
@@ -29,28 +26,8 @@ class ConnectionForm extends Component {
         <div className="card top-space">
           <div className="card-body">
             <h5 className="card-title center-text">{this.state.cardTitle}</h5>
-            <TextInput
-              id="input-username"
-              type="text"
-              labelText={this.state.unameForm}
-              placeholder="..."
-            />
-            <TextInput
-              id="input-password"
-              type="password"
-              labelText={this.state.passwordForm}
-              placeholder="..."
-            />
-            <Button
-              text={this.state.submitBtnText}
-              action={this.connect}
-              style="btn btn-primary"
-            />
-            <Button
-              text={this.state.cancelBtnText}
-              action={this.goBackHome}
-              style="btn btn-danger left-spacing"
-            />
+            {this.state.forms}
+            {this.state.buttons}
           </div>
         </div>
       </div>
@@ -58,4 +35,4 @@ class ConnectionForm extends Component {
   }
 }
 
-export default ConnectionForm;
+export { FormUser };
