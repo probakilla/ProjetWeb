@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "../css/connection.css";
 
-class FormUser extends Component {
+class Form extends Component {
   static get propTypes() {
     return {
       buttons: PropTypes.element,
       forms: PropTypes.element,
+      style: PropTypes.string,
       cardTitle: PropTypes.string
     };
   }
@@ -16,16 +17,18 @@ class FormUser extends Component {
     this.state = {
       buttons: props.buttons,
       forms: props.forms,
+      style: props.style,
       cardTitle: props.cardTitle
     };
+    this.render = this.render.bind(this);
   }
 
   render() {
     return (
-      <div className="container">
-        <div className="card top-space">
+      <div className="container-fluid">
+        <div className={"card top-space " + this.state.style}>
           <div className="card-body">
-            <h5 className="card-title center-text">{this.state.cardTitle}</h5>
+            <div className="card-header">{this.state.cardTitle}</div>
             {this.state.forms}
             {this.state.buttons}
           </div>
@@ -35,4 +38,4 @@ class FormUser extends Component {
   }
 }
 
-export { FormUser };
+export default Form;

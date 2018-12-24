@@ -6,7 +6,8 @@ class TextInput extends Component {
     return {
       id: PropTypes.string,
       type: PropTypes.string,
-      labelText: PropTypes.string
+      labelText: PropTypes.string,
+      placeholder: PropTypes.string
     };
   }
 
@@ -42,12 +43,12 @@ class ConnectionInputs extends Component {
     return (
       <form>
         <TextInput
-          id="input-username"
+          id="connection-username"
           type="text"
           labelText="Nom d'utilisateur"
         />
         <TextInput
-          id="input-password"
+          id="connection-password"
           type="password"
           labelText="Mot de passe"
         />
@@ -56,7 +57,7 @@ class ConnectionInputs extends Component {
   }
 }
 
-class InformationInputs extends Component {
+class RegisterInput extends Component {
   constructor() {
     super();
   }
@@ -65,18 +66,18 @@ class InformationInputs extends Component {
     return (
       <form>
         <TextInput
-          id="input-username"
+          id="register-username"
           type="text"
           labelText="Nom d'utilisateur"
         />
         <TextInput
-          id="input-password"
+          id="register-password"
           type="password"
           labelText="Mot de passe"
         />
-        <TextInput id="input-lab" type="text" labelText="Nom du laboratoire" />
+        <TextInput id="register-lab" type="text" labelText="Nom du laboratoire" />
         <TextInput
-          id="input-team"
+          id="register-team"
           type="text"
           labelText="Nom de l'équipe de recherche"
         />
@@ -85,4 +86,4 @@ class InformationInputs extends Component {
   }
 }
 
-export { TextInput, ConnectionInputs, InformationInputs };
+export { TextInput, ConnectionInputs, RegisterInput };

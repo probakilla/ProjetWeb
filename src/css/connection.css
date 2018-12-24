@@ -9,3 +9,8 @@
 .left-spacing {
     margin-left: 1rem;
 }
+
+.card-header {
+    margin-bottom: 1rem;
+    font-size: 18px;
+}

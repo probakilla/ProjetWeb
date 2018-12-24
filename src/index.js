@@ -3,9 +3,12 @@ import display from "./jsx/display";
 import HomeNavbar from "./jsx/navbar";
 import WorldMap from "./jsx/map";
 import Button from "./jsx/button";
-import { ConnectionInputs, InformationInputs } from "./jsx/input";
-import { FormUser } from "./jsx/form";
+import { ConnectionInputs, RegisterInput } from "./jsx/input";
+import Form from "./jsx/form";
+import Filters from "./jsx/filter";
 import "./css/button.css";
+import "./css/filter.css";
+import "./css/connection.css"
 
 function redirectionConnection() {
   location.href = "connection.html";
@@ -57,7 +60,7 @@ display(
 display(<WorldMap />, "map-col");
 
 display(
-  <FormUser
+  <Form
     buttons={FormButtons}
     forms={<ConnectionInputs />}
     cardTitle="Connexion"
@@ -66,10 +69,15 @@ display(
 );
 
 display(
-  <FormUser
+  <Form
     buttons={FormButtons}
-    forms={<InformationInputs />}
+    forms={<RegisterInput />}
     cardTitle="Enregistrement"
   />,
   "register-col"
+);
+
+display(
+  <Form forms={<Filters />} cardTitle="Filters" style="text-white bg-dark" />,
+  "filters-col"
 );
