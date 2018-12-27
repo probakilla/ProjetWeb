@@ -5,16 +5,12 @@
 }
 
 .filter-margin {
+  margin-top: -5rem;
   margin-left: -3rem;
 }
 
 .footer {
   margin-top: 3rem;
-  padding-bottom: 3rem;
+  padding-bottom: 10rem;
   padding-top: 1rem;
-}
-
-.footer-text {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
 }

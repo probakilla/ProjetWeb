@@ -8,7 +8,7 @@ import Form from "./jsx/form";
 import Filters from "./jsx/filter";
 import "./css/button.css";
 import "./css/filter.css";
-import "./css/connection.css"
+import "./css/connection.css";
 
 function redirectionConnection() {
   location.href = "connection.html";
@@ -42,13 +42,9 @@ const registerButtons = (
 );
 
 const FormButtons = (
-  <div className="container">
-    <Button text="Envoi" action={connect} style="btn btn-primary" />
-    <Button
-      text="Retour"
-      action={goBackHome}
-      style="btn btn-danger left-spacing"
-    />
+  <div className="d-flex">
+      <Button text="Retour" action={goBackHome} style="btn btn-danger" />
+      <Button text="Envoi" action={connect} style="btn btn-primary ml-auto" />
   </div>
 );
 

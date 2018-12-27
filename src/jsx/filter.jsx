@@ -28,9 +28,9 @@ class Filters extends Component {
         <hr></hr>
         <TextInput id="team-filter" type="text" labelText="Filtre d'équipe" />
         <hr></hr>
-        <label className="input-group-text" htmlFor="continent-filter">
+        <label htmlFor="continent-filter">
           Continent
-        </label> <br></br>
+        </label>
 
         <select id="continent-filter" className="custom-select">
           <option selected>Europe</option>
