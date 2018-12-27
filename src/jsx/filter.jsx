@@ -33,7 +33,7 @@ class Filters extends Component {
         </label>
 
         <select id="continent-filter" className="custom-select">
-          <option selected>Europe</option>
+          <option value>Europe</option>
           <option value>Asie</option>
           <option value>Amérique du nord</option>
           <option value>Amérique du sud</option>

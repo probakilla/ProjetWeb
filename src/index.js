@@ -6,6 +6,7 @@ import Button from "./jsx/button";
 import { ConnectionInputs, RegisterInput } from "./jsx/input";
 import Form from "./jsx/form";
 import Filters from "./jsx/filter";
+import InfoPannel from "./jsx/infoPannel";
 import "./css/button.css";
 import "./css/filter.css";
 import "./css/connection.css";
@@ -43,10 +44,12 @@ const registerButtons = (
 
 const FormButtons = (
   <div className="d-flex">
-      <Button text="Retour" action={goBackHome} style="btn btn-danger" />
-      <Button text="Envoi" action={connect} style="btn btn-primary ml-auto" />
+    <Button text="Retour" action={goBackHome} style="btn btn-danger" />
+    <Button text="Envoi" action={connect} style="btn btn-primary ml-auto" />
   </div>
 );
+
+const infoText = "Veuillez choisir un laboratoire.";
 
 display(
   <HomeNavbar brandName="Page d'accueil" rightBtn={registerButtons} />,
@@ -77,3 +80,5 @@ display(
   <Form forms={<Filters />} cardTitle="Filters" style="text-white bg-dark" />,
   "filters-col"
 );
+
+display(<InfoPannel infotext={infoText} />, "info-pannel");
