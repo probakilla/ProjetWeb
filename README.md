@@ -18,8 +18,6 @@ gate](https://sonarcloud.io/api/project_badges/measure?project=web%3Apipin&metri
   - [Sepcs](#sepcs)
   - [Organisation du dépôt](#organisation-du-d%C3%A9p%C3%B4t)
   - [Modules](#modules)
-  - [Installation](#installation)
-  - [Utilisation](#utilisation)
   - [Specs base de données](#specs-base-de-donn%C3%A9es)
   - [Enoncé](#enonc%C3%A9)
   - [Sujet](#sujet)
@@ -34,23 +32,24 @@ gate](https://sonarcloud.io/api/project_badges/measure?project=web%3Apipin&metri
 - Base de données : mongodb, mlab
 - travis
 - sonarcloud
+- Heroku
 
 ## Organisation du dépôt
 
 ```
   ProjetWeb
   |
-  +---src/
+  ├── src/
   |    |
-  |    +---views/
+  |    ├── css/
+  |    |
+  |    ├── jsx/
   |    |
-  |    +---models/
+  |    ├── models/
   |    |
-  |    +---public/
+  |    └── public/
   |
-  +---tests/
-  |
-  +---resources/
+  └── tests/
 ```
 
 - src : Code source du projet
@@ -64,18 +63,16 @@ gate](https://sonarcloud.io/api/project_badges/measure?project=web%3Apipin&metri
 
 - express
 - react
-
-## Installation
-
-TODO
-
-## Utilisation
-
-TODO
+- Bootstrap 4
 
 ## Specs base de données
 
-TODO
+La base de données est une base mongoDB hébergée en ligne sur le site mlab et
+comporte les collections suivantes :
+
+> _User_
+> | username | password | teams | labs |
+> | :------: | :------: | :---: | :---: |
 
 ## Enoncé
 
@@ -124,15 +121,15 @@ d'autre services
 ## Champ de l'api à considérer
 
 - anrProject_t
-- __collaboration_s__
+- **collaboration_s**
 - country_s ?
-- deptStruct*
+- deptStruct\*
 - europeanProject_t
 - instStructCountry_s ?
 - structure_t
-- __labStruct*__
-- __rgrLabStruc*__
-- rteamStruct*
+- **labStruct\***
+- **rgrLabStruc\***
+- rteamStruct\*
 - modifiedDate
 - submitedDate
 - writingDate
