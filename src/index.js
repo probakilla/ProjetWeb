@@ -10,6 +10,9 @@ import { Button } from "./jsx/button";
 import "./css/button.css";
 import "./css/filter.css";
 import "./css/connection.css";
+import "./server/requestsHal.js"
+
+const markerArray = [[0, 0], [69, 45], [44.87067, -0.63931]]
 
 function redirectionConnection() {
   location.href = "connection.html";
