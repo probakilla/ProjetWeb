@@ -6,6 +6,8 @@ class TextInput extends Component {
     return {
       id: PropTypes.string,
       type: PropTypes.string,
+      name: PropTypes.string,
+      onChange: PropTypes.func,
       labelText: PropTypes.string,
       placeholder: PropTypes.string
     };
@@ -15,75 +17,27 @@ class TextInput extends Component {
     super(props);
     this.state = {
       id: props.id,
+      name: props.name,
       inputType: props.type,
+      onChange: props.onChange,
       labelText: props.labelText
     };
   }
 
   render() {
     return (
-      <div className="form-group">
+      <div className="col-auto">
         <label htmlFor={this.state.id}>{this.state.labelText}</label>
         <input
           id={this.state.id}
           type={this.state.inputType}
+          name={this.state.name}
           className="form-control"
+          onChange={this.state.onChange}
         />
       </div>
     );
   }
 }
 
-class ConnectionInputs extends Component {
-  constructor() {
-    super();
-  }
-
-  render() {
-    return (
-      <form>
-        <TextInput
-          id="connection-username"
-          type="text"
-          labelText="Nom d'utilisateur"
-        />
-        <TextInput
-          id="connection-password"
-          type="password"
-          labelText="Mot de passe"
-        />
-      </form>
-    );
-  }
-}
-
-class RegisterInput extends Component {
-  constructor() {
-    super();
-  }
-
-  render() {
-    return (
-      <form>
-        <TextInput
-          id="register-username"
-          type="text"
-          labelText="Nom d'utilisateur"
-        />
-        <TextInput
-          id="register-password"
-          type="password"
-          labelText="Mot de passe"
-        />
-        <TextInput id="register-lab" type="text" labelText="Nom du laboratoire" />
-        <TextInput
-          id="register-team"
-          type="text"
-          labelText="Nom de l'équipe de recherche"
-        />
-      </form>
-    );
-  }
-}
-
-export { TextInput, ConnectionInputs, RegisterInput };
+export { TextInput };
