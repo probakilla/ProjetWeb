@@ -51,7 +51,7 @@ display(
 />, "message-col"
 )
 
-display(<WorldMap />, "map-col");
+display(<WorldMap array={markerArray}/>, "map-col");
 
 display(
   <Form forms={<Filters />} cardTitle="Filters" style="text-white bg-dark" />,
@@ -59,3 +59,4 @@ display(
 );
 
 display(<InfoPannel infotext={infoText} />, "info-pannel");
+o
