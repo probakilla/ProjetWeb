@@ -5,6 +5,7 @@ import WorldMap from "./jsx/map";
 import Form from "./jsx/form";
 import Filters from "./jsx/filter";
 import InfoPannel from "./jsx/infoPannel";
+import Message from "./jsx/jumbotron";
 import { Button } from "./jsx/button";
 import "./css/button.css";
 import "./css/filter.css";
@@ -40,9 +41,14 @@ display(
   "navbar-container"
 );
 
+display(
+  <Message
+  header={name}
+  text="Vous etes désormais enregistré sur ce site !"
+/>, "message-col"
+)
+
 display(<WorldMap />, "map-col");
-
-
 
 display(
   <Form forms={<Filters />} cardTitle="Filters" style="text-white bg-dark" />,

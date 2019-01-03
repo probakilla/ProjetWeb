@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import { Redirect } from "react-router-dom"
 import PropTypes from "prop-types";
 import { TextInput } from "./input";
 import { SubmitButton, ReturnToIndexButton } from "./button";
 import "../css/connection.css";
 import display from "./display";
+import Message from "./jumbotron";
 
 class Form extends Component {
   static get propTypes() {
@@ -49,7 +51,8 @@ class FormRegister extends Component {
       username: "",
       password: "",
       teams: "",
-      labs: ""
+      labs: "",
+      redirect: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -59,7 +62,29 @@ class FormRegister extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+  setRedirect() {
+    alert("click");
+    this.setState({
+      redirect: true
+    })
+  }
+
+  renderRedirect() {
+    if (this.state.redirect) {
+      return <Redirect to="message.html" />
+    }
+  }
+
   handleSubmit(event) {
+    let name = "Bienvenue " + this.state.username;
+    display(
+      <Message
+        header={name}
+        text=""
+      />,
+      "message-col"
+    );
+    event.preventDefault();
     const xhr = new XMLHttpRequest();
     const url = "http://localhost:4444/user";
     xhr.open("POST", url, true);
@@ -71,13 +96,17 @@ class FormRegister extends Component {
       labs: this.state.labs
     });
     xhr.send(data);
-    ReactDOM.unmountComponentAtNode("register-col");
-    event.preventDefault();
+    location.href = "index.html";
   }
 
   render() {
+    const redirect = false;
+    if (redirect === true) {
+      return <Redirect to="http://localhost:8080/index.html" />
+    }
     return (
       <div className="container-fluid">
+        {this.renderRedirect()}
         <div className="card top-space">
           <div className="card-body">
             <div className="card-header">Connexion</div>

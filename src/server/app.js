@@ -21,5 +21,9 @@ app.get("/", (req, res) => {
   res.status(200).send("swagger");
 });
 
+app.get("/home", (req, res) => {
+  res.status(200).sendFile("index.html");
+});
+
 const port = 4444;
 app.listen(port);

@@ -29,6 +29,7 @@ class InfoPannel extends Component {
             <div className="card-header">Informations</div>
             <span className="info-text">{this.state.infotext}</span><br></br>
             <Button text="Déselection" style="btn btn-danger btn-cancel" action={this.deselection}/>
+            
           </div>
         </div>
       </div>
