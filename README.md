@@ -45,7 +45,13 @@ gate](https://sonarcloud.io/api/project_badges/measure?project=web%3Apipin&metri
   |    |
   |    ├── jsx/
   |    |
-  |    ├── models/
+  |    ├── server/
+  |    |     |
+  |    |     ├── controllers/
+  |    |     |
+  |    |     ├── models/
+  |    |     |
+  |    |     └── routes/ 
   |    |
   |    └── public/
   |
