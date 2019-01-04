@@ -17,13 +17,14 @@ class WorldMap extends Component {
       positionArray: props.array
     }; 
   }
+  
   render() {
     let listMarker = [];
     for (let i = 0; i < this.state.positionArray.length; ++i)
     {
-      listMarker.push(<Marker key={i} position={this.state.positionArray[i]}>
+      listMarker.push(<Marker key={i} position={[this.state.positionArray[i][0], this.state.positionArray[i][1]]}>
         <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
+          test
         </Popup>
       </Marker>)
     }

@@ -10,10 +10,15 @@ import { Button } from "./jsx/button";
 import "./css/button.css";
 import "./css/filter.css";
 import "./css/connection.css";
-import "./server/requestsHal.js"
+import fetchAllLabs from "./server/requestsHal.js"
+require('babel-polyfill');
 
-const markerArray = [[0, 0], [69, 45], [44.87067, -0.63931]]
-
+const name = async function() {
+  const test = await fetchAllLabs();
+  console.log("test"); 
+  display(<WorldMap array={test}/>, "map-col");
+}
+name();
 function redirectionConnection() {
   location.href = "connection.html";
 }
@@ -51,7 +56,7 @@ display(
 />, "message-col"
 )
 
-display(<WorldMap array={markerArray}/>, "map-col");
+
 
 display(
   <Form forms={<Filters />} cardTitle="Filters" style="text-white bg-dark" />,
@@ -59,4 +64,3 @@ display(
 );
 
 display(<InfoPannel infotext={infoText} />, "info-pannel");
-o
