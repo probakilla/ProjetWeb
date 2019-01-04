@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { TextInput } from "./input";
 import { SubmitButton, ReturnToIndexButton } from "./button";
+const HttpCodes = require("../server/httpCodes.js")
 import "../css/connection.css";
-import display from "./display";
 
 class FormUser extends Component {
   static get propTypes() {
@@ -112,7 +112,7 @@ class Form extends Component {
       labs: this.state.labs
     });
     request.onreadystatechange = () => {
-      if (request.readyState === 4 && request.status === 201) {
+      if (request.readyState === 4 && request.status === HttpCodes.CREATED) {
         alert(request.responseText);
         location.href = "index.html";
       }
@@ -127,7 +127,7 @@ class Form extends Component {
     const params = "/" + this.state.username + "&" + this.state.password;
     request.open("GET", url + params, true);
     request.onreadystatechange = () => {
-      if (request.readyState === 4 && request.status === 202) {
+      if (request.readyState === 4 && request.status === HttpCodes.ACCEPTED) {
         alert(request.responseText);
         location.href = "index.html";
       }
@@ -158,8 +158,5 @@ class Form extends Component {
     );
   }
 }
-
-display(<Form register={true} />, "register-col");
-display(<Form register={false} />, "connection-col");
 
 export default Form;

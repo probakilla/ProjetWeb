@@ -1,9 +1,10 @@
 const User = require("../models/user.model");
 const CryptoJS = require("crypto-js");
+const HttpCodes = require("../httpCodes")
 const key = "CryptoKey";
 
 function handleError(err, res) {
-  res.status(400).send("DATABASE ERROR: " + err);
+  res.status(HttpCodes.BAD_REQUEST).send("DATABASE ERROR: " + err);
 }
 
 function ecr(word) {
@@ -24,7 +25,7 @@ exports.userRegister = (req, res) => {
   });
   user.save(err => {
     if (err) handleError(err, res);
-    res.status(201).send("Successfully registred!");
+    res.status(HttpCodes.CREATED).send("Enregistrement réussi!");
   });
 };
 
@@ -32,8 +33,8 @@ exports.userCredentials = (req, res) => {
   User.findOne({ username: req.params.uname }, "password", (err, user) => {
     if (err) handleError(err, res);
     if (dcr(user.password) === req.params.uname) {
-      res.status(202).send("Connected");
+      res.status(HttpCodes.ACCEPTED).send("Connexion réussie");
     }
-    res.status(401).send("Authentication failed");
+    res.status(HttpCodes.UNAUTHORIZED).send("Connexion échouée");
   });
 };

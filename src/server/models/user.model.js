@@ -11,4 +11,18 @@ let UserSchema = new Schema(
   { collection: "User" }
 );
 
-module.exports = mongoose.model("User", UserSchema);
+let User = mongoose.model("User", UserSchema);
+
+UserSchema.pre("save", next => {
+  let self = this;
+  User.find({ username: self.username }, (err, docs) => {
+    if (!docs.length) {
+      next();
+    } else {
+      alert("User exists!")
+      next(new Error("User exists!"));
+    }
+  });
+});
+
+module.exports = User;
