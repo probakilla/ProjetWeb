@@ -31,7 +31,7 @@ async function dispCollabAddress (data)
             let results = await provider.search({ query: data[i].labStructAddress_s [j]});
             if (typeof results[0] != 'undefined')
             {
-              array.push([results[0].y, results[0].x]);
+              array.push([results[0].y, results[0].x, data[i].labStructName_s [j]]);
             }
           }
         }

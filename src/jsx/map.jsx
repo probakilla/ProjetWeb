@@ -14,17 +14,17 @@ class WorldMap extends Component {
       },
       zoom: 2,
       length: 4,
-      positionArray: props.array
+      labArray: props.array
     }; 
   }
   
   render() {
     let listMarker = [];
-    for (let i = 0; i < this.state.positionArray.length; ++i)
+    for (let i = 0; i < this.state.labArray.length; ++i)
     {
-      listMarker.push(<Marker key={i} position={[this.state.positionArray[i][0], this.state.positionArray[i][1]]}>
+      listMarker.push(<Marker key={i} position={[this.state.labArray[i][0], this.state.labArray[i][1]]}>
         <Popup>
-          test
+        {this.state.labArray[i][2]}
         </Popup>
       </Marker>)
     }
