@@ -18,9 +18,14 @@ class WorldMap extends Component {
       },
       zoom: 2,
       length: 4,
-      labArray: props.array
+      labArray: []
     }; 
   }
+
+  updateArray(array){
+    let that = this;
+    that.setState({labArray : array})
+  } 
 
   clearMarker = () => {
     this.setState({labArray : []})

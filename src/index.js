@@ -13,12 +13,15 @@ import "./css/connection.css";
 import fetchAllLabs from "./server/requestsHal.js"
 require('babel-polyfill');
 
-const name = async function() {
+// Display all lab in the WorldMap
+const dispMarker = async function() {
   const test = await fetchAllLabs();
-  console.log("test"); 
-  display(<WorldMap array={test}/>, "map-col");
+  worldmap.updateArray(test);
 }
-name();
+
+// Will contain a reference to the WorldMap
+let worldmap;
+
 function redirectionConnection() {
   location.href = "connection.html";
 }
@@ -51,12 +54,14 @@ display(
 
 display(
   <Message
-  header={name}
+  header={"name ?"}
   text="Vous etes désormais enregistré sur ce site !"
 />, "message-col"
 )
 
+display(<WorldMap ref={(c) => worldmap = c}/>, "map-col");
 
+dispMarker();
 
 display(
   <Form forms={<Filters />} cardTitle="Filters" style="text-white bg-dark" />,
