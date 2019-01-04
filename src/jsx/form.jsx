@@ -87,10 +87,12 @@ class Form extends Component {
       password: "",
       teams: "",
       labs: "",
+      urlUser: "http://localhost:4444/user",
       register: props.register
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleConnecion = this.handleConnection.bind(this);
   }
 
   handleChange(event) {
@@ -99,18 +101,38 @@ class Form extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const xhr = new XMLHttpRequest();
-    const url = "http://localhost:4444/user";
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-Type", "application/json");
+    const request = new XMLHttpRequest();
+    const url = this.state.urlUser;
+    request.open("POST", url, true);
+    request.setRequestHeader("Content-Type", "application/json");
     let data = JSON.stringify({
       username: this.state.username,
       password: this.state.password,
       teams: this.state.teams,
       labs: this.state.labs
     });
-    xhr.send(data);
-    location.href = "index.html";
+    request.onreadystatechange = () => {
+      if (request.readyState === 4 && request.status === 201) {
+        alert(request.responseText);
+        location.href = "index.html";
+      }
+    };
+    request.send(data);
+  }
+
+  handleConnection(event) {
+    event.preventDefault();
+    const request = new XMLHttpRequest();
+    const url = this.state.urlUser;
+    const params = "/" + this.state.username + "&" + this.state.password;
+    request.open("GET", url + params, true);
+    request.onreadystatechange = () => {
+      if (request.readyState === 4 && request.status === 202) {
+        alert(request.responseText);
+        location.href = "index.html";
+      }
+    };
+    request.send(null);
   }
 
   render() {
@@ -121,7 +143,9 @@ class Form extends Component {
             <div className="card-header">Connexion</div>
             <FormUser
               handleChange={this.handleChange}
-              handleSubmit={this.handleSubmit}
+              handleSubmit={
+                this.state.register ? this.handleSubmit : this.handleConnecion
+              }
               register={this.state.register}
             />
             <hr />
