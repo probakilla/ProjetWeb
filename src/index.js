@@ -19,6 +19,7 @@ const name = async function() {
   display(<WorldMap array={test}/>, "map-col");
 }
 name();
+
 function redirectionConnection() {
   location.href = "connection.html";
 }
@@ -56,11 +57,5 @@ display(
 />, "message-col"
 )
 
-
-
-display(
-  <Form forms={<Filters />} cardTitle="Filters" style="text-white bg-dark" />,
-  "filters-col"
-);
-
+display(<Filters />, "filters-col"); 
 display(<InfoPannel infotext={infoText} />, "info-pannel");
