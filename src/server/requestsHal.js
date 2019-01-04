@@ -25,7 +25,7 @@ async function labJsonToArray  (data)
         for (let j = 0; j < data[i].labStructAddress_s.length; ++j)
         {           
           // There also "INCOMING" and "OLD"
-          if (data[i].labStructValid_s[j] == "VALID" || "INCOMING")
+          if (data[i].labStructValid_s[j] == "VALID")
           {
             // search
             let results = await provider.search({ query: data[i].labStructAddress_s [j]});

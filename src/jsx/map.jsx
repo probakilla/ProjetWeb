@@ -4,6 +4,10 @@ import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import "../css/map.css";
 import { runInThisContext } from "vm";
 
+const latIndex = 0;
+const lngIndex = 1;
+const labNameIndex = 2;
+
 class WorldMap extends Component {
   constructor(props) {
     super(props);
@@ -17,18 +21,22 @@ class WorldMap extends Component {
       labArray: props.array
     }; 
   }
-  
+
+  clearMarker = () => {
+    this.setState({labArray : []})
+  } 
+
   render() {
     let listMarker = [];
     for (let i = 0; i < this.state.labArray.length; ++i)
     {
-      listMarker.push(<Marker key={i} position={[this.state.labArray[i][0], this.state.labArray[i][1]]}>
+      listMarker.push(<Marker key={i} position={[this.state.labArray[i][latIndex], this.state.labArray[i][lngIndex]]}>
         <Popup>
-        {this.state.labArray[i][2]}
+        {this.state.labArray[i][labNameIndex]}
         </Popup>
       </Marker>)
     }
-    return (
+    return (      
       <div id="main-wrap">
         <Map
           center={this.state.latlng}
