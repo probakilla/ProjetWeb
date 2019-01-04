@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Button } from "./button"
+import { Button } from "./button";
 import "../css/infoPannel.css";
 
 class InfoPannel extends Component {
@@ -13,12 +13,13 @@ class InfoPannel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      infotext: props.infotext
+      infotext: props.infotext,
+      txtHeader : "Informations"
     };
   }
 
   deselection() {
-      alert("Not inmplemented yet !");
+    alert("Not inmplemented yet !");
   }
 
   render() {
@@ -26,10 +27,14 @@ class InfoPannel extends Component {
       <div className="container-fluid top-space">
         <div className="card bg-dark text-white">
           <div className="card-body">
-            <div className="card-header">Informations</div>
-            <span className="info-text">{this.state.infotext}</span><br></br>
-            <Button text="Déselection" style="btn btn-danger btn-cancel" action={this.deselection}/>
-            
+            <div className="card-header">{this.state.txtHeader}</div>
+            <span className="info-text">{this.state.infotext}</span>
+            <br />
+            <Button
+              text="Déselection"
+              style="btn btn-danger btn-cancel"
+              action={this.deselection}
+            />
           </div>
         </div>
       </div>

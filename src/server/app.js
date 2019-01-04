@@ -3,6 +3,7 @@ const app = express();
 const user = require("./routes/user.route");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const HttpCodes = require("./httpCodes")
 
 const mongoose = require("mongoose");
 let dbUrl = "mongodb://admin:yoloswagg69@ds026658.mlab.com:26658/projetweb";
@@ -18,12 +19,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/user", user);
 
 app.get("/", (req, res) => {
-  res.status(200).send("swagger");
+  res.status(HttpCodes.SUCCESS).send("swagger");
 });
 
 app.get("/home", (req, res) => {
-  res.status(200).sendFile("index.html");
+  res.status(HttpCodes.SUCCESS).sendFile("index.html");
 });
-
 const port = 4444;
 app.listen(port);
