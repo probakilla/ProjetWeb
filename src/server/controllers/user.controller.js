@@ -32,7 +32,7 @@ exports.userRegister = (req, res) => {
 exports.userCredentials = (req, res) => {
   User.findOne({ username: req.params.uname }, "password", (err, user) => {
     if (err) handleError(err, res);
-    if (dcr(user.password) === req.params.uname) {
+    if (dcr(user.password) === req.params.pswd) {
       res.status(HttpCodes.ACCEPTED).send("Connexion réussie");
     }
     res.status(HttpCodes.UNAUTHORIZED).send("Connexion échouée");

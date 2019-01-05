@@ -95,6 +95,21 @@ class Form extends Component {
     this.handleConnecion = this.handleConnection.bind(this);
   }
 
+  badRegister(message) {
+    let unameInput = document.getElementById("username-input");
+    unameInput.classList.add("is-invalid");
+    let invalidField = document.getElementById("username-input-invalid");
+    invalidField.innerHTML = message;
+  }
+
+  badLogin(usernameMessage, passwordMessage) {
+    this.badRegister(usernameMessage);
+    let pswdInput = document.getElementById("password-input");
+    pswdInput.classList.add("is-invalid");
+    let invalidField = document.getElementById("password-input-invalid");
+    invalidField.innerHTML = passwordMessage;
+  }
+
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
@@ -119,10 +134,7 @@ class Form extends Component {
         request.readyState === 4 &&
         request.status === HttpCodes.BAD_REQUEST
       ) {
-        let unameInput = document.getElementById("username-input");
-        unameInput.classList.add("is-invalid");
-        let invalidField = document.getElementById("username-input-invalid");
-        invalidField.innerHTML = "Nom d'utilisateur déjà utilisé."
+        this.badRegister("Nom d'utilisateur déjà utilisé");
       }
     };
     request.send(data);
@@ -138,6 +150,9 @@ class Form extends Component {
       if (request.readyState === 4 && request.status === HttpCodes.ACCEPTED) {
         alert(request.responseText);
         location.href = "index.html";
+      } else {
+        const message = "Nom ou mot de passe invalide";
+        this.badLogin(message, message);
       }
     };
     request.send(null);
