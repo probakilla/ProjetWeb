@@ -95,6 +95,10 @@ class Form extends Component {
     this.handleConnecion = this.handleConnection.bind(this);
   }
 
+  checkCorrectCode(request, code) {
+    return request.readyState === 4 && request.status === code;
+  }
+
   badRegister(message) {
     let unameInput = document.getElementById("username-input");
     unameInput.classList.add("is-invalid");
@@ -127,7 +131,7 @@ class Form extends Component {
       labs: this.state.labs
     });
     request.onreadystatechange = () => {
-      if (request.readyState === 4 && request.status === HttpCodes.CREATED) {
+      if (this.checkCorrectCode(request, HttpCodes.CREATED)) {
         alert(request.responseText);
         location.href = "index.html";
       } else if (
@@ -147,7 +151,8 @@ class Form extends Component {
     const params = "/" + this.state.username + "&" + this.state.password;
     request.open("GET", url + params, true);
     request.onreadystatechange = () => {
-      if (request.readyState === 4 && request.status === HttpCodes.ACCEPTED) {
+      if (this.checkCorrectCode(request, HttpCodes.ACCEPTED)) {
+        sessionStorage.setItem("username", this.state.username);
         alert(request.responseText);
         location.href = "index.html";
       } else {

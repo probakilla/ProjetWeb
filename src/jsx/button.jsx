@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import "../css/connection.css"
+import "../css/connection.css";
 
 class Button extends Component {
   static get propTypes() {
@@ -40,7 +40,13 @@ class SubmitButton extends Component {
   }
 
   render() {
-    return <input className="btn btn-primary top-space" type="submit" value="Envoi" />;
+    return (
+      <input
+        className="btn btn-primary top-space"
+        type="submit"
+        value="Envoi"
+      />
+    );
   }
 }
 
@@ -63,4 +69,64 @@ class ReturnToIndexButton extends Component {
   }
 }
 
-export { SubmitButton, Button, ReturnToIndexButton };
+class RegisterButtons extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  regirectionRegister() {
+    location.href = "register.html";
+  }
+
+  redirectionConnection() {
+    location.href = "connection.html";
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <Button
+          text="Connexion"
+          action={this.redirectionConnection}
+          style="btn btn-link white-link"
+        />
+        <Button
+          text="Enregistrement"
+          action={this.regirectionRegister}
+          style="btn btn-link white-link"
+        />
+      </div>
+    );
+  }
+}
+
+class LogOutButton extends Component {
+  constructor(props) {
+    super(props);
+    this.logOut = this.logOut.bind(this);
+  }
+
+  refreshPage() {
+    window.location.reload()
+  }
+
+  logOut() {
+      alert("Déconnecté");
+      sessionStorage.clear();
+      this.refreshPage();
+  }
+
+  render() {
+    return <Button text="Déconexion" 
+    action={this.logOut}
+    style="btn btn-link white-link" />;
+  }
+}
+
+export {
+  SubmitButton,
+  Button,
+  ReturnToIndexButton,
+  RegisterButtons,
+  LogOutButton
+};

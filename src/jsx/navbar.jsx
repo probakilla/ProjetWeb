@@ -1,30 +1,31 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+import { RegisterButtons, LogOutButton } from "./button";
 import "../css/navbar.css";
 
 class HomeNavbar extends Component {
-  static get propTypes() {
-    return {
-      brandName: PropTypes.string,
-      rightBtn: PropTypes.element
-    };
-  }
 
   constructor(props) {
     super(props);
     this.state = {
-      brand: props.brandName,
-      navBtn: props.rightBtn
+      brand: "Page d'acceuil"
     };
+  }
+
+  sessionExists() {
+    return sessionStorage.getItem("username") !== null;
   }
 
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark nav-margin">
         <a className="navbar-brand" href="#">
-          {this.props.brandName}
+          {this.sessionExists()
+            ? sessionStorage.getItem("username")
+            : this.state.brand}
         </a>
-        <span className="navbar-text ml-auto">{this.state.navBtn}</span>
+        <span className="navbar-text ml-auto">
+          {this.sessionExists() ? <LogOutButton /> : <RegisterButtons />}
+        </span>
       </nav>
     );
   }
