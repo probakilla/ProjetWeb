@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import "../css/map.css";
-import { runInThisContext } from "vm";
 
 const latIndex = 0;
 const lngIndex = 1;

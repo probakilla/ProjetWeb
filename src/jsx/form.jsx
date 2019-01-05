@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { TextInput } from "./input";
-import { SubmitButton, ReturnToIndexButton } from "./button";
+import ReactModal from "react-modal";
+import { SubmitButton, ReturnToIndexButton, ValidButton } from "./button";
 const HttpCodes = require("../server/httpCodes.js");
 import "../css/connection.css";
+import "../css/modal.css";
 
 class FormUser extends Component {
   static get propTypes() {
@@ -88,6 +90,8 @@ class Form extends Component {
       teams: "",
       labs: "",
       urlUser: "http://localhost:4444/user",
+      showModal: false,
+      modalMsg: "",
       register: props.register
     };
     this.handleChange = this.handleChange.bind(this);
@@ -132,8 +136,10 @@ class Form extends Component {
     });
     request.onreadystatechange = () => {
       if (this.checkCorrectCode(request, HttpCodes.CREATED)) {
-        alert(request.responseText);
-        location.href = "index.html";
+        this.setState({
+          showModal: true,
+          modalMsg: "Inscription réussie ! Bienvenue " + this.state.username
+        });
       } else if (this.checkCorrectCode(request, HttpCodes.BAD_REQUEST)) {
         this.badRegister("Nom d'utilisateur déjà utilisé");
       }
@@ -150,8 +156,11 @@ class Form extends Component {
     request.onreadystatechange = () => {
       if (this.checkCorrectCode(request, HttpCodes.ACCEPTED)) {
         sessionStorage.setItem("username", this.state.username);
-        alert(request.responseText);
-        location.href = "index.html";
+        this.setState({
+          showModal: true,
+          modalMsg:
+            "Connexion réussie ! Content de vous revoir " + this.state.username
+        });
       } else {
         const message = "Nom ou mot de passe invalide";
         this.badLogin(message, message);
@@ -163,6 +172,13 @@ class Form extends Component {
   render() {
     return (
       <div className="container-fluid">
+        <ReactModal
+          className="modal-content center valid-modal"
+          isOpen={this.state.showModal}
+        >
+          <p>{this.state.modalMsg}</p>
+          {<ValidButton />}
+        </ReactModal>
         <div className="card top-space">
           <div className="card-body">
             <div className="card-header">Connexion</div>

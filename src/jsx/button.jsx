@@ -101,25 +101,45 @@ class RegisterButtons extends Component {
 }
 
 class LogOutButton extends Component {
+  static get propTypes() {
+    return {
+      action: PropTypes.func
+    }
+  }
+
   constructor(props) {
     super(props);
-    this.logOut = this.logOut.bind(this);
-  }
-
-  refreshPage() {
-    window.location.reload()
-  }
-
-  logOut() {
-      alert("Déconnecté");
-      sessionStorage.clear();
-      this.refreshPage();
+    this.state = {
+      action: props.action
+    }
   }
 
   render() {
-    return <Button text="Déconexion" 
-    action={this.logOut}
-    style="btn btn-link white-link" />;
+    return (
+      <Button
+        text="Déconexion"
+        action={this.state.action}
+        style="btn btn-link white-link"
+      />
+    );
+  }
+}
+
+class ValidButton extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  goHome() {
+    location.href = "index.html";
+  }
+
+  render() {
+    return (
+      <button className="btn btn-success" onClick={this.goHome}>
+        Ok
+      </button>
+    );
   }
 }
 
@@ -128,5 +148,6 @@ export {
   Button,
   ReturnToIndexButton,
   RegisterButtons,
-  LogOutButton
+  LogOutButton,
+  ValidButton
 };

@@ -1,0 +1,25 @@
+.center {
+  margin: auto;
+  padding: 25px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.center-home {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10%;
+  padding: 25px;
+}
+
+.valid-modal {
+  border: 2px solid green;
+}
+
+.deconection-modal {
+    border: 2px solid grey;
+}

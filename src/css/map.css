@@ -2,6 +2,7 @@
   height: 600px;
   width: 90%;
   margin: 0 auto;
+  z-index: -1;
 }
 
 .filter-margin {
