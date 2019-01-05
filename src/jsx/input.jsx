@@ -35,6 +35,9 @@ class TextInput extends Component {
           className="form-control"
           onChange={this.state.onChange}
         />
+        <div id={this.state.id + "-invalid"} className="invalid-feedback">
+
+        </div>
       </div>
     );
   }

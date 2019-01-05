@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { TextInput } from "./input";
 import { SubmitButton, ReturnToIndexButton } from "./button";
-const HttpCodes = require("../server/httpCodes.js")
+const HttpCodes = require("../server/httpCodes.js");
 import "../css/connection.css";
 
 class FormUser extends Component {
@@ -115,6 +115,14 @@ class Form extends Component {
       if (request.readyState === 4 && request.status === HttpCodes.CREATED) {
         alert(request.responseText);
         location.href = "index.html";
+      } else if (
+        request.readyState === 4 &&
+        request.status === HttpCodes.BAD_REQUEST
+      ) {
+        let unameInput = document.getElementById("username-input");
+        unameInput.classList.add("is-invalid");
+        let invalidField = document.getElementById("username-input-invalid");
+        invalidField.innerHTML = "Nom d'utilisateur déjà utilisé."
       }
     };
     request.send(data);
