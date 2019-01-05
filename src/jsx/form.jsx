@@ -134,10 +134,7 @@ class Form extends Component {
       if (this.checkCorrectCode(request, HttpCodes.CREATED)) {
         alert(request.responseText);
         location.href = "index.html";
-      } else if (
-        request.readyState === 4 &&
-        request.status === HttpCodes.BAD_REQUEST
-      ) {
+      } else if (this.checkCorrectCode(request, HttpCodes.BAD_REQUEST)) {
         this.badRegister("Nom d'utilisateur déjà utilisé");
       }
     };

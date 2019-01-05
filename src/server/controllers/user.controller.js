@@ -1,25 +1,44 @@
 const User = require("../models/user.model");
-const CryptoJS = require("crypto-js");
-const HttpCodes = require("../httpCodes")
-const key = "CryptoKey";
+const crypto = require("crypto");
+const HttpCodes = require("../httpCodes");
+const key = "Crypt0K3y";
 
 function handleError(err, res) {
   res.status(HttpCodes.BAD_REQUEST).send("DATABASE ERROR: " + err);
 }
 
-function ecr(word) {
-  return CryptoJS.AES.encrypt(word, key);
+function encrypt(text, masterKey) {
+  const iv = crypto.randomBytes(16);
+  const salt = crypto.randomBytes(64);
+  const key = crypto.pbkdf2Sync(masterKey, salt, 2145, 32, "sha512");
+  const cipher = crypto.createCipheriv("aes-256-gcm", key, iv);
+  const encrypted = Buffer.concat([
+    cipher.update(text, "utf8"),
+    cipher.final()
+  ]);
+  const tag = cipher.getAuthTag();
+  return Buffer.concat([salt, iv, tag, encrypted]).toString("base64");
 }
 
-function dcr(encrypted) {
-  return CryptoJS.AES.decrypt(encrypted, key).toString(CryptoJS.enc.Utf8);
+function decrypt(encrypted, masterKey) {
+  const bData = Buffer.from(encrypted, "base64");
+
+  const salt = bData.slice(0, 64);
+  const iv = bData.slice(64, 80);
+  const tag = bData.slice(80, 96);
+  const text = bData.slice(96);
+
+  const key = crypto.pbkdf2Sync(masterKey, salt, 2145, 32,"sha512");
+  const decipher = crypto.createDecipheriv("aes-256-gcm", key, iv);
+  decipher.setAuthTag(tag);
+  return decipher.update(text, "binary", "utf8") + decipher.final("utf8");
 }
 
 exports.userRegister = (req, res) => {
-  const password = ecr(req.body.password);
+  const encrypted = encrypt(req.body.password, key);
   let user = new User({
     username: req.body.username,
-    password: password,
+    password: encrypted,
     labs: req.body.labs,
     teams: req.body.teams
   });
@@ -32,9 +51,9 @@ exports.userRegister = (req, res) => {
 exports.userCredentials = (req, res) => {
   User.findOne({ username: req.params.uname }, "password", (err, user) => {
     if (err) handleError(err, res);
-    if (dcr(user.password) === req.params.pswd) {
+    if (decrypt(user.password, key) === req.params.pswd) {
       res.status(HttpCodes.ACCEPTED).send("Connexion réussie");
     }
-    res.status(HttpCodes.UNAUTHORIZED).send("Connexion échouée");
+    res.status(HttpCodes.UNAUTHORIZED).send("Connexion échouée ");
   });
 };
