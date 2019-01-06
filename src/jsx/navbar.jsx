@@ -9,7 +9,7 @@ class HomeNavbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      brand: "Page d'acceuil",
+      brand: "Page d'accueil",
       goodbye: "",
       showModal: false
     };
