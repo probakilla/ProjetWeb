@@ -117,7 +117,7 @@ class LogOutButton extends Component {
   render() {
     return (
       <Button
-        text="Déconexion"
+        text="Déconnexion"
         action={this.state.action}
         style="btn btn-link white-link"
       />
