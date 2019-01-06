@@ -1,7 +1,8 @@
 // import
 import { EsriProvider } from 'leaflet-geosearch';
-const allLabUrl = "https://api.archives-ouvertes.fr/search/?fl=*&q=collaboration_s:*"
-const collabUrl = "https://api.archives-ouvertes.fr/search/?fl=*&q=collaboration_s:*&fq=labStructName_s:"
+const nbRespPerReq = 42;
+const allLabUrl = "https://api.archives-ouvertes.fr/search/?fl=*&q=collaboration_s:*&fq=country_s:fr&rows="+nbRespPerReq
+const collabUrl = "https://api.archives-ouvertes.fr/search/?fl=*&q=collaboration_s:*&rows="+nbRespPerReq+"&fq=labStructName_s:"
 // setup
 const provider = new EsriProvider();
 let labArray = [];
@@ -19,10 +20,27 @@ async function fetchAllLabs(){
   return labArray;
 }
 
+// Retrieve lab that collaborate with the lab named "name"
 async function fetchLabCollab(name)
 {
   name = "\""+name+"\"";
   await fetch(collabUrl + name)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(async function(myJson) {
+    await labJsonToArray (myJson.response.docs);
+  })
+  return labArray;
+}
+
+// Retrieve lab that collaborate with the lab named "name" between
+// "begin" and "end". If no value are passed for end, it will search
+// at the maximum.
+async function fetchCollabsByDate(name, begin, end="*"){
+  name = "\""+name+"\"";
+  let date = "&fq=releasedDateY_i:[" + begin + " TO " + end + "]";
+  await fetch(collabUrl + name + date)
   .then(function(response) {
     return response.json();
   })
@@ -56,5 +74,6 @@ async function labJsonToArray  (data)
 }
 export default {
   fetchAllLabs: fetchAllLabs,
-  fetchLabCollab: fetchLabCollab
+  fetchLabCollab: fetchLabCollab,
+  fetchCollabsByDate: fetchCollabsByDate
 }
