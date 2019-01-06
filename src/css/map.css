@@ -14,3 +14,9 @@
   padding-bottom: 10rem;
   padding-top: 1rem;
 }
+
+.leaflet-div-icon {
+  background: transparent;
+  color: red;
+  border: none;
+}

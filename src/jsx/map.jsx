@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
+import { renderToStaticMarkup } from "react-dom/server";
+import { divIcon } from "leaflet";
+import UserSession from "../js/userSession";
 import "../css/map.css";
 
 const latIndex = 0;
@@ -31,13 +34,31 @@ class WorldMap extends Component {
 
   render() {
     let listMarker = [];
+    const iconMarkup = renderToStaticMarkup(
+      <i className=" fa fa-map-marker-alt fa-3x" />
+    );
+    const customMarkerIcon = divIcon({
+      html: iconMarkup,
+      iconSize: [32, 32],
+      iconAnchor: [16,32]
+    });
     for (let i = 0; i < this.state.labArray.length; ++i)
     {
-      listMarker.push(<Marker key={i} position={[this.state.labArray[i][latIndex], this.state.labArray[i][lngIndex]]}>
+      if (UserSession.getLabs() == this.state.labArray[i][labNameIndex])
+      {
+        listMarker.push(<Marker key={i} position={[this.state.labArray[i][latIndex], this.state.labArray[i][lngIndex]]} icon={customMarkerIcon}>
         <Popup>
         {this.state.labArray[i][labNameIndex]}
         </Popup>
       </Marker>)
+      }
+      else {
+        listMarker.push(<Marker key={i} position={[this.state.labArray[i][latIndex], this.state.labArray[i][lngIndex]]}>
+          <Popup>
+          {this.state.labArray[i][labNameIndex]}
+          </Popup>
+        </Marker>)
+      }
     }
     return (      
       <div id="main-wrap">
