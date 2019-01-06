@@ -5,12 +5,13 @@ import WorldMap from "./jsx/map";
 import Filters from "./jsx/filter";
 import InfoPannel from "./jsx/infoPannel";
 import Form from "./jsx/form";
-import { Button } from "./jsx/button";
+import fetchAllLabs from "./js/requestsHal";
+
 import "./css/button.css";
 import "./css/filter.css";
 import "./css/connection.css";
 import "./css/map.css";
-import fetchAllLabs from "./server/requestsHal.js";
+
 require("babel-polyfill");
 
 // Display all lab in the WorldMap

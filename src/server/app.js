@@ -3,11 +3,11 @@ const app = express();
 const user = require("./routes/user.route");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const HttpCodes = require("./httpCodes")
-
+const HttpCodes = require("../js/httpCodes");
 const mongoose = require("mongoose");
+
 let dbUrl = "mongodb://admin:yoloswagg69@ds026658.mlab.com:26658/projetweb";
-let mongo = process.env.MONGODB_URI || dbUrl; // Tout le reste ça va, mais ce truc, me demande pas stp.
+let mongo = process.env.MONGODB_URI || dbUrl;
 mongoose.connect(mongo);
 mongoose.Promise = global.Promise;
 let db = mongoose.connection;

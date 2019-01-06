@@ -1,6 +1,6 @@
 const User = require("../models/user.model");
 const crypto = require("crypto");
-const HttpCodes = require("../httpCodes");
+const HttpCodes = require("../../js/httpCodes");
 const key = "Crypt0K3y";
 
 function handleError(err, res) {

@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import ReactModal from "react-modal";
 import PropTypes from "prop-types";
 import { TextInput } from "./input";
-import ReactModal from "react-modal";
 import { SubmitButton, ReturnToIndexButton, ValidButton } from "./button";
-const HttpCodes = require("../server/httpCodes.js");
 import "../css/connection.css";
 import "../css/modal.css";
+
+const HttpCodes = require("../js/httpCodes");
 
 class FormUser extends Component {
   static get propTypes() {
