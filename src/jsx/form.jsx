@@ -5,6 +5,7 @@ import { TextInput } from "./input";
 import { SubmitButton, ReturnToIndexButton, ValidButton } from "./button";
 import "../css/connection.css";
 import "../css/modal.css";
+import UserSession from "../js/userSession";
 
 const request = require("../js/requests");
 require("babel-polyfill");
@@ -141,9 +142,13 @@ class Form extends Component {
   async handleConnection(event) {
     event.preventDefault();
     const params = "/" + this.state.username + "&" + this.state.password;
-    const correct = await request.userConnect(params);
-    if (correct) {
-      sessionStorage.setItem("username", this.state.username);
+    const response = await request.userConnect(params);
+    if (response !== null) {
+      UserSession.connectUser(
+        response.username,
+        response.teams,
+        response.labs
+      );
       this.setState({
         showModal: true,
         modalMsg:

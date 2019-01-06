@@ -23,9 +23,6 @@ const dispMarker = async function() {
 // Will contain a reference to the WorldMap
 let worldmap;
 
-
-const infoText = "Veuillez choisir un laboratoire.";
-
 display(<HomeNavbar />, "navbar-container");
 
 display(<WorldMap ref={c => (worldmap = c)} />, "map-col");
@@ -36,4 +33,4 @@ display(<Form register={true} />, "register-col");
 display(<Form register={false} />, "connection-col");
 
 display(<Filters />, "filters-col");
-display(<InfoPannel infotext={infoText} />, "info-pannel");
+display(<InfoPannel />, "info-pannel");

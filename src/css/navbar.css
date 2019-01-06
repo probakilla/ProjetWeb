@@ -1,3 +1,11 @@
 .nav-margin {
   margin-bottom: 2rem;
 }
+
+.navbar-brand {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 24px;
+  padding: 10px;
+  border: 1px solid #5e5e5e;
+  border-radius: 25px;
+}

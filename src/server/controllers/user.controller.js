@@ -28,7 +28,7 @@ function decrypt(encrypted, masterKey) {
   const tag = bData.slice(80, 96);
   const text = bData.slice(96);
 
-  const key = crypto.pbkdf2Sync(masterKey, salt, 2145, 32,"sha512");
+  const key = crypto.pbkdf2Sync(masterKey, salt, 2145, 32, "sha512");
   const decipher = crypto.createDecipheriv("aes-256-gcm", key, iv);
   decipher.setAuthTag(tag);
   return decipher.update(text, "binary", "utf8") + decipher.final("utf8");
@@ -49,11 +49,20 @@ exports.userRegister = (req, res) => {
 };
 
 exports.userCredentials = (req, res) => {
-  User.findOne({ username: req.params.uname }, "password", (err, user) => {
-    if (err) handleError(err, res);
-    if (decrypt(user.password, key) === req.params.pswd) {
-      res.status(HttpCodes.ACCEPTED).send("Connexion réussie");
+  User.findOne(
+    { username: req.params.uname },
+    "password labs teams",
+    (err, user) => {
+      if (err) handleError(err, res);
+      if (decrypt(user.password, key) === req.params.pswd) {
+        const obj = {
+          username: req.params.uname,
+          labs: user.labs,
+          teams: user.teams
+        };
+        res.status(HttpCodes.ACCEPTED).send(JSON.stringify(obj));
+      }
+      res.status(HttpCodes.UNAUTHORIZED).send("Connexion échouée ");
     }
-    res.status(HttpCodes.UNAUTHORIZED).send("Connexion échouée ");
-  });
+  );
 };

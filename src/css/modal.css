@@ -12,8 +12,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 10%;
-  padding: 25px;
+  width: 25%;
+  padding: 35px;
 }
 
 .valid-modal {
@@ -21,5 +21,5 @@
 }
 
 .deconection-modal {
-    border: 2px solid grey;
+  border: 2px solid grey;
 }

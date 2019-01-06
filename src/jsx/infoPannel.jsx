@@ -1,20 +1,32 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { Button } from "./button";
+import UserSession from "../js/userSession";
 import "../css/infoPannel.css";
 
-class InfoPannel extends Component {
-  static get propTypes() {
-    return {
-      infotext: PropTypes.string
-    };
+class SessionData extends Component {
+  constructor(props) {
+    super(props);
   }
 
+  render() {
+    return (
+      <div className="container">
+        <p>
+          Votre laboratoire : {UserSession.getLabs()} <br />
+        </p>
+        <p>Votre équipe : {UserSession.getTeams()}</p>
+      </div>
+    );
+  }
+}
+
+class InfoPannel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      infotext: props.infotext,
-      txtHeader : "Informations"
+      infotext: "Veuillez vous connecter",
+      txtHeader: "Informations",
+      data: <SessionData />
     };
   }
 
@@ -28,11 +40,13 @@ class InfoPannel extends Component {
         <div className="card bg-dark text-white">
           <div className="card-body">
             <div className="card-header">{this.state.txtHeader}</div>
-            <span className="info-text">{this.state.infotext}</span>
+            <span className="info-text">
+              {UserSession.exists() ? this.state.data : this.state.infotext}
+            </span>
             <br />
             <Button
-              text="Déselection"
-              style="btn btn-danger btn-cancel"
+              text="Réinitialiser sélection"
+              style="btn btn-block btn-danger btn-cancel"
               action={this.deselection}
             />
           </div>

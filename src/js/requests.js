@@ -23,11 +23,13 @@ async function userConnect(params) {
   let ret;
   await fetch(URL_USER + params).then(res => {
     if (res.status === HttpCodes.ACCEPTED) {
-      ret = true;
+      return res.json();
     } else {
-      ret = false;
+      return null;
     }
-  });
+  }).then((data) => {
+    ret = data;
+  })
   return ret;
 }
 
