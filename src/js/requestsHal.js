@@ -1,12 +1,28 @@
 // import
 import { EsriProvider } from 'leaflet-geosearch';
-const collabUrl = "https://api.archives-ouvertes.fr/search/?q=collaboration_s:*&fl=*"
+const allLabUrl = "https://api.archives-ouvertes.fr/search/?fl=*&q=collaboration_s:*"
+const collabUrl = "https://api.archives-ouvertes.fr/search/?fl=*&q=collaboration_s:*&fq=labStructName_s:"
 // setup
 const provider = new EsriProvider();
 let labArray = [];
 
+// Retrieve all labs and labs that have collabarate in an array comporting:
+// lat,lng and labName
 async function fetchAllLabs(){
-  await fetch(collabUrl)
+  await fetch(allLabUrl)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(async function(myJson) {
+    await labJsonToArray (myJson.response.docs);
+  })
+  return labArray;
+}
+
+async function fetchLab(name)
+{
+  name = "\""+name+"\"";
+  await fetch(collabUrl + name)
   .then(function(response) {
     return response.json();
   })
@@ -39,5 +55,6 @@ async function labJsonToArray  (data)
   }
 }
 export default {
-  fetchAllLabs: fetchAllLabs
+  fetchAllLabs: fetchAllLabs,
+  fetchLab: fetchLab
 }
