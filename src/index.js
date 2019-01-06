@@ -23,6 +23,7 @@ const dispMarker = async function() {
 // Will contain a reference to the WorldMap
 let worldmap;
 
+
 const infoText = "Veuillez choisir un laboratoire.";
 
 display(<HomeNavbar />, "navbar-container");

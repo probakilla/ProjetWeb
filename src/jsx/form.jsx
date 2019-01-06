@@ -6,7 +6,8 @@ import { SubmitButton, ReturnToIndexButton, ValidButton } from "./button";
 import "../css/connection.css";
 import "../css/modal.css";
 
-const HttpCodes = require("../js/httpCodes");
+const request = require("../js/requests");
+require("babel-polyfill");
 
 class FormUser extends Component {
   static get propTypes() {
@@ -90,7 +91,6 @@ class Form extends Component {
       password: "",
       teams: "",
       labs: "",
-      urlUser: "http://localhost:4444/user",
       showModal: false,
       modalMsg: "",
       register: props.register
@@ -98,10 +98,6 @@ class Form extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleConnecion = this.handleConnection.bind(this);
-  }
-
-  checkCorrectCode(request, code) {
-    return request.readyState === 4 && request.status === code;
   }
 
   badRegister(message) {
@@ -123,51 +119,40 @@ class Form extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
-    const request = new XMLHttpRequest();
-    const url = this.state.urlUser;
-    request.open("POST", url, true);
-    request.setRequestHeader("Content-Type", "application/json");
     let data = JSON.stringify({
       username: this.state.username,
       password: this.state.password,
       teams: this.state.teams,
       labs: this.state.labs
     });
-    request.onreadystatechange = () => {
-      if (this.checkCorrectCode(request, HttpCodes.CREATED)) {
-        this.setState({
-          showModal: true,
-          modalMsg: "Inscription réussie ! Bienvenue " + this.state.username
-        });
-      } else if (this.checkCorrectCode(request, HttpCodes.BAD_REQUEST)) {
-        this.badRegister("Nom d'utilisateur déjà utilisé");
-      }
-    };
-    request.send(data);
+    const correct = await request.sendUser(data);
+    if (correct) {
+      this.setState({
+        showModal: true,
+        modalMsg: "Inscription réussie ! Bienvenue " + this.state.username
+      });
+    } else {
+      this.badRegister("Nom d'utilisateur déjà utilisé");
+    }
   }
 
-  handleConnection(event) {
+  async handleConnection(event) {
     event.preventDefault();
-    const request = new XMLHttpRequest();
-    const url = this.state.urlUser;
     const params = "/" + this.state.username + "&" + this.state.password;
-    request.open("GET", url + params, true);
-    request.onreadystatechange = () => {
-      if (this.checkCorrectCode(request, HttpCodes.ACCEPTED)) {
-        sessionStorage.setItem("username", this.state.username);
-        this.setState({
-          showModal: true,
-          modalMsg:
-            "Connexion réussie ! Content de vous revoir " + this.state.username
-        });
-      } else {
-        const message = "Nom ou mot de passe invalide";
-        this.badLogin(message, message);
-      }
-    };
-    request.send(null);
+    const correct = await request.userConnect(params);
+    if (correct) {
+      sessionStorage.setItem("username", this.state.username);
+      this.setState({
+        showModal: true,
+        modalMsg:
+          "Connexion réussie ! Content de vous revoir " + this.state.username
+      });
+    } else {
+      const message = "Nom ou mot de passe invalide";
+      this.badLogin(message, message);
+    }
   }
 
   render() {
@@ -176,6 +161,7 @@ class Form extends Component {
         <ReactModal
           className="modal-content center valid-modal"
           isOpen={this.state.showModal}
+          ariaHideApp={false}
         >
           <p>{this.state.modalMsg}</p>
           {<ValidButton />}

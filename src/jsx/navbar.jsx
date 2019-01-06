@@ -9,6 +9,7 @@ class HomeNavbar extends Component {
     super(props);
     this.state = {
       brand: "Page d'acceuil",
+      goodbye: "",
       showModal: false
     };
     this.logOut = this.logOut.bind(this);
@@ -20,6 +21,9 @@ class HomeNavbar extends Component {
   }
 
   showModal() {
+    this.setState({
+      goodbye: "A bientot " + sessionStorage.getItem("username") + "!"
+    });
     sessionStorage.clear();
     this.setState({ showModal: true });
   }
@@ -36,7 +40,8 @@ class HomeNavbar extends Component {
           isOpen={this.state.showModal}
           ariaHideApp={false}
         >
-          <p>A bientot !</p> <br /> {<ValidButton action={this.logOut} />}
+          <p>{this.state.goodbye}</p> <br />{" "}
+          {<ValidButton action={this.logOut} />}
         </ReactModal>
         <a className="navbar-brand" href="#">
           {this.sessionExists()
