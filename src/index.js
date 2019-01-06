@@ -5,17 +5,19 @@ import WorldMap from "./jsx/map";
 import Filters from "./jsx/filter";
 import InfoPannel from "./jsx/infoPannel";
 import Form from "./jsx/form";
+import requestsHal from "./js/requestsHal";
+import UserSession from "./js/userSession";
 import "./css/button.css";
 import "./css/filter.css";
 import "./css/connection.css";
 import "./css/map.css";
-import requestsHal from "./js/requestsHal";
+
 
 require("babel-polyfill");
 
 // Display all lab in the WorldMap
 const dispMarker = async function() {
-  const test = await requestsHal.fetchAllLabs();
+  const test = await requestsHal.fetchLabCollab(UserSession.getLabs());
   worldmap.updateArray(test);
 };
 

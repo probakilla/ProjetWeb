@@ -19,7 +19,7 @@ async function fetchAllLabs(){
   return labArray;
 }
 
-async function fetchLab(name)
+async function fetchLabCollab(name)
 {
   name = "\""+name+"\"";
   await fetch(collabUrl + name)
@@ -56,5 +56,5 @@ async function labJsonToArray  (data)
 }
 export default {
   fetchAllLabs: fetchAllLabs,
-  fetchLab: fetchLab
+  fetchLabCollab: fetchLabCollab
 }
