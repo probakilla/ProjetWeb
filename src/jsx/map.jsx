@@ -40,6 +40,7 @@ class WorldMap extends Component {
   onMarkerClick = (e) => {
     let array = []
     let collabArray = requestsHal.getCollabInfoArray()
+    array.push(this.state.labArray[e.target.options.id][labNameIndex])
     for (let i = 0; i < collabArray.length; ++i)
     {
 

@@ -31,11 +31,17 @@ class InfoData extends Component {
 
   render() {
     let infoLab = []
-    for (let i = 0; i < selectInfoArray.length; ++i)
+    infoLab.push(
+      <div className="container">
+      <strong>
+        Collaborations entre: {UserSession.getLabs()} et {selectInfoArray[0]}:
+      </strong>
+    </div>)
+    for (let i = 1; i < selectInfoArray.length; ++i)
     {
       infoLab.push(
         <div key={i} className="container">
-        <p>
+        <p className="collab-info">
           Nom de l&apos;article : {selectInfoArray[i][titleIndex]} <br />
           Date de sortie : {selectInfoArray[i][releasedDateIndex]}
         </p>
