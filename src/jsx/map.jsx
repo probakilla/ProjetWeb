@@ -30,7 +30,11 @@ class WorldMap extends Component {
 
   clearMarker = () => {
     this.setState({labArray : []})
-  } 
+  }
+
+  onMarkerClick = (e) => {
+    alert(this.state.labArray[e.target.options.id][labNameIndex]);
+  }
 
   render() {
     let listMarker = [];
@@ -46,14 +50,14 @@ class WorldMap extends Component {
     {
       if (UserSession.getLabs() == this.state.labArray[i][labNameIndex])
       {
-        listMarker.push(<Marker key={i} position={[this.state.labArray[i][latIndex], this.state.labArray[i][lngIndex]]} icon={customMarkerIcon}>
+        listMarker.push(<Marker key={i} id={i} position={[this.state.labArray[i][latIndex], this.state.labArray[i][lngIndex]]} icon={customMarkerIcon} onclick={this.onMarkerClick}>
         <Popup>
         {this.state.labArray[i][labNameIndex]}
         </Popup>
       </Marker>)
       }
       else {
-        listMarker.push(<Marker key={i} position={[this.state.labArray[i][latIndex], this.state.labArray[i][lngIndex]]}>
+        listMarker.push(<Marker key={i} id={i} position={[this.state.labArray[i][latIndex], this.state.labArray[i][lngIndex]]} onclick={this.onMarkerClick}>
           <Popup>
           {this.state.labArray[i][labNameIndex]}
           </Popup>
