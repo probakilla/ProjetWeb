@@ -2,8 +2,8 @@
 import { EsriProvider } from 'leaflet-geosearch';
 import { isNull } from 'util';
 const nbRespPerReq = 42;
-const allLabUrl = "https://api.archives-ouvertes.fr/search/?fl=*&q=collaboration_s:*&fq=country_s:fr&rows="+nbRespPerReq
-const collabUrl = "https://api.archives-ouvertes.fr/search/?fl=*&q=collaboration_s:*&rows="+nbRespPerReq+"&fq=labStructName_s:"
+const allLabUrl = "https://api.archives-ouvertes.fr/search/?fl=*&q=collaboration_s:*&sort=releasedDateY_i asc&fq=country_s:fr&rows="+nbRespPerReq
+const collabUrl = "https://api.archives-ouvertes.fr/search/?fl=*&q=collaboration_s:*&sort=releasedDateY_i asc&rows="+nbRespPerReq+"&fq=labStructName_s:"
 // setup
 const provider = new EsriProvider();
 let labArray = [];
