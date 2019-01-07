@@ -3,6 +3,10 @@ import { Button } from "./button";
 import UserSession from "../js/userSession";
 import "../css/infoPannel.css";
 
+const titleIndex = 0
+const releasedDateIndex = 1
+let selectInfoArray
+
 class SessionData extends Component {
   constructor(props) {
     super(props);
@@ -10,13 +14,35 @@ class SessionData extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container">    
         <p>
           Votre laboratoire : {UserSession.getLabs()} <br />
         </p>
         <p>Votre équipe : {UserSession.getTeams()}</p>
       </div>
     );
+  }
+}
+
+class InfoData extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    let infoLab = []
+    for (let i = 0; i < selectInfoArray.length; ++i)
+    {
+      infoLab.push(
+        <div key={i} className="container">
+        <p>
+          Nom de l&apos;article : {selectInfoArray[i][titleIndex]} <br />
+          Date de sortie : {selectInfoArray[i][releasedDateIndex]}
+        </p>
+      </div>
+      )
+    }
+    return (infoLab);
   }
 }
 
@@ -34,6 +60,12 @@ class InfoPannel extends Component {
     alert("Not inmplemented yet !");
   }
 
+  updateInfoPannel(data){
+    let that = this;
+    selectInfoArray = data
+    that.setState({data: <InfoData />})
+  }
+ 
   render() {
     return (
       <div className="container-fluid top-space">

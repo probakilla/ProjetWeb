@@ -21,8 +21,13 @@ const dispMarker = async function() {
   worldmap.updateArray(test);
 };
 
+const updateInfoPannel = function(array){
+  infopannel.updateInfoPannel(array);
+}
+
 // Will contain a reference to the WorldMap
 let worldmap;
+let infopannel;
 
 display(<HomeNavbar />, "navbar-container");
 
@@ -34,4 +39,8 @@ display(<Form register={true} />, "register-col");
 display(<Form register={false} />, "connection-col");
 
 display(<Filters />, "filters-col");
-display(<InfoPannel />, "info-pannel");
+display(<InfoPannel ref={c => (infopannel = c)} />, "info-pannel");
+
+export default {
+  updateInfoPannel: updateInfoPannel
+}

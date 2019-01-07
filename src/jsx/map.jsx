@@ -3,11 +3,16 @@ import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import { renderToStaticMarkup } from "react-dom/server";
 import { divIcon } from "leaflet";
 import UserSession from "../js/userSession";
+import RequestsHal from "../js/requestsHal";
+import Index from "../index";
 import "../css/map.css";
+import requestsHal from "../js/requestsHal";
 
 const latIndex = 0;
 const lngIndex = 1;
 const labNameIndex = 2;
+const titleIndex = 0
+const releasedDateIndex = 1
 
 class WorldMap extends Component {
   constructor(props) {
@@ -33,7 +38,21 @@ class WorldMap extends Component {
   }
 
   onMarkerClick = (e) => {
-    alert(this.state.labArray[e.target.options.id][labNameIndex]);
+    let array = []
+    let collabArray = requestsHal.getCollabInfoArray()
+    for (let i = 0; i < collabArray.length; ++i)
+    {
+
+      for (let j = 0; j < collabArray[i][labNameIndex].length; ++j)
+      {
+        if (this.state.labArray[e.target.options.id][labNameIndex] == collabArray[i][labNameIndex][j])
+        {
+          array.push([collabArray[i][titleIndex], collabArray[i][releasedDateIndex]])
+          break;
+        }
+      }
+    }
+    Index.updateInfoPannel(array)
   }
 
   render() {
