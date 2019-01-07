@@ -1,5 +1,6 @@
 // import
 import { EsriProvider } from 'leaflet-geosearch';
+import { isNull } from 'util';
 const nbRespPerReq = 42;
 const allLabUrl = "https://api.archives-ouvertes.fr/search/?fl=*&q=collaboration_s:*&fq=country_s:fr&rows="+nbRespPerReq
 const collabUrl = "https://api.archives-ouvertes.fr/search/?fl=*&q=collaboration_s:*&rows="+nbRespPerReq+"&fq=labStructName_s:"
@@ -50,7 +51,20 @@ async function fetchCollabsByDate(name, begin, end="*"){
   return labArray;
 }
 
-async function labJsonToArray  (data)
+async function fetchCollabByCountry(name, country)
+{
+  name = "\""+name+"\"";
+  await fetch(collabUrl + name)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(async function(myJson) {
+    await labJsonToArray (myJson.response.docs, country);
+  })
+  return labArray;
+}
+
+async function labJsonToArray  (data, country=null)
 {
   for (let i = 0; i < data.length; ++i)
   {
@@ -63,9 +77,9 @@ async function labJsonToArray  (data)
         {
           // search
           let results = await provider.search({ query: data[i].labStructAddress_s [j]});
-          if (typeof results[0] != 'undefined')
+          if (typeof results[0] != 'undefined' && (isNull(country) || country == data[i].labStructCountry_s[j]))
           {
-            labArray.push([results[0].y, results[0].x, data[i].labStructName_s [j]]);
+            labArray.push([results[0].y, results[0].x, data[i].labStructName_s [j],data[i].labStructAddress_s [j]]);
           }
         }
       }
@@ -75,5 +89,6 @@ async function labJsonToArray  (data)
 export default {
   fetchAllLabs: fetchAllLabs,
   fetchLabCollab: fetchLabCollab,
-  fetchCollabsByDate: fetchCollabsByDate
+  fetchCollabsByDate: fetchCollabsByDate,
+  fetchCollabByCountry: fetchCollabByCountry
 }
