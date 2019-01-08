@@ -68,7 +68,7 @@ class WorldMap extends Component {
     });
     for (let i = 0; i < this.state.labArray.length; ++i)
     {
-      if (UserSession.getLabs() == this.state.labArray[i][labNameIndex])
+      if (UserSession.getLabs().toUpperCase() === this.state.labArray[i][labNameIndex].toUpperCase())
       {
         listMarker.push(<Marker key={i} id={i} position={[this.state.labArray[i][latIndex], this.state.labArray[i][lngIndex]]} icon={customMarkerIcon} onclick={this.onMarkerClick}>
         <Popup>
