@@ -66,18 +66,19 @@ class InfoPannel extends Component {
       txtHeader: "Informations",
       data: <SessionData />
     };
+    this.deselection = this.deselection.bind(this);
+    this.updateInfoPannel = this.updateInfoPannel.bind(this);
   }
 
   deselection() {
-    alert("Not inmplemented yet !");
+    this.setState({data: <SessionData />})
   }
 
   updateInfoPannel(data){
-    let that = this;
     selectInfoArray = data
-    that.setState({data: <InfoData />})
+    this.setState({data: <InfoData />})
   }
- 
+
   render() {
     return (
       <div className="container-fluid top-space">
@@ -89,7 +90,7 @@ class InfoPannel extends Component {
             </span>
             <br />
             <Button
-              text="Réinitialiser sélection"
+              text="Réinitialiser le filtre"
               style="btn btn-block btn-danger btn-cancel"
               action={this.deselection}
             />

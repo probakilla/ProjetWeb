@@ -25,20 +25,22 @@ class WorldMap extends Component {
       zoom: 2,
       length: 4,
       labArray: []
-    }; 
+    };
+    this.updateArray = this.updateArray.bind(this);
+    this.clearMarker = this.clearMarker.bind(this);
+    this.onMarkerClick = this.onMarkerClick.bind(this);
   }
 
   updateArray(array){
-    let that = this;
     this.clearMarker();
-    that.setState({labArray : array});
+    this.setState({labArray : array});
   } 
 
-  clearMarker = () => {
+  clearMarker(){
     this.setState({labArray : []});
   }
 
-  onMarkerClick = (e) => {
+  onMarkerClick(e){
     let array = [];
     let collabArray = RequestHal.getCollabInfoArray();
     array.push(this.state.labArray[e.target.options.id][labNameIndex]);
