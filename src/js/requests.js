@@ -1,13 +1,11 @@
+import RequestsHal from "../js/requestsHal";
+
 const HttpCodes = require("./httpCodes");
 const URL_USER = "http://localhost:4444/user";
 
 const INCRIPTION_OK = 0;
 const BAD_PASSWORD = 1;
 const BAD_LAB = 2;
-
-function checkLabExists(lab) {
-  return false;
-}
 
 /**
  * Send to the internal API the personal data of the user in order to register
@@ -18,7 +16,8 @@ function checkLabExists(lab) {
  */
 async function sendUser(data) {
   let ret;
-  if (!checkLabExists(data.labs))
+  let parsedData = JSON.parse(data);
+  if (!await RequestsHal.checkLabExists(parsedData.labs))
     return BAD_LAB;
   await fetch(URL_USER, {
     method: "POST",
@@ -65,8 +64,10 @@ async function userConnect(params) {
   return ret;
 }
 
-module.exports.sendUser = sendUser;
-module.exports.userConnect = userConnect;
-module.exports.INCRIPTION_OK = INCRIPTION_OK;
-module.exports.BAD_PASSWORD = BAD_PASSWORD;
-module.exports.BAD_LAB = BAD_LAB;
+export default {
+  sendUser: sendUser,
+  userConnect: userConnect,
+  INCRIPTION_OK: INCRIPTION_OK,
+  BAD_PASSWORD: BAD_PASSWORD,
+  BAD_LAB: BAD_LAB
+}

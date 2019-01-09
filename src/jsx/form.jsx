@@ -4,10 +4,10 @@ import PropTypes from "prop-types";
 import { TextInput } from "./input";
 import { SubmitButton, ReturnToIndexButton, ValidButton } from "./button";
 import UserSession from "../js/userSession";
+import request from "../js/requests";
 import "../css/connection.css";
 import "../css/modal.css";
 
-const request = require("../js/requests");
 require("babel-polyfill");
 
 class FormUser extends Component {
@@ -135,7 +135,7 @@ class Form extends Component {
         this.badRegister("Nom d'utilisateur déjà utilisé");
         break;
       case request.BAD_LAB:
-        this.badLab("Le laboratoir entré d'existe pas");
+        this.badLab("Le laboratoire entré n'existe pas");
         break;
     }
   }

@@ -3,8 +3,9 @@ import { EsriProvider } from 'leaflet-geosearch';
 import { isNull } from 'util';
 import UserSession from './userSession';
 
-const nbRespPerReq = 42;
+const nbRespPerReq = 30;
 const collabUrl = "https://api.archives-ouvertes.fr/search/?fl=*&q=collaboration_s:*&sort=releasedDateY_i asc&rows="+nbRespPerReq;
+const checkLabExistsUrl = "https://api.archives-ouvertes.fr/search/?fl=*&rows=1"
 const provider = new EsriProvider();
 let labArray = [];
 let collabInfoArray = [];
@@ -18,14 +19,14 @@ let collabInfoArray = [];
  */
 async function fetchLabCollab(name)
 {
-  let reqName = "&fq=labStructName_t:\"" + name + "\"";
+  let reqName = "&fq=labStructName_sci:\"" + name + "\"";
   await fetch(collabUrl + reqName)
   .then(function(response) {
     return response.json();
   })
   .then(async function(myJson) {
     await labJsonToArray (myJson.response.docs);
-  })
+  });
   return labArray;
 }
 
@@ -40,7 +41,7 @@ async function fetchLabCollab(name)
  * the lab's name for each collaborations and collaborators.
  */
 async function fetchCollabsByDate(name, begin, end="*"){
-  let reqName = "&fq=labStructName_t:\"" + name + "\"";
+  let reqName = "&fq=labStructName_sci:\"" + name + "\"";
   let date = "&fq=releasedDateY_i:[" + begin + " TO " + end + "]";
   await fetch(collabUrl + reqName + date)
   .then(function(response) {
@@ -48,7 +49,7 @@ async function fetchCollabsByDate(name, begin, end="*"){
   })
   .then(async function(myJson) {
     await labJsonToArray (myJson.response.docs);
-  })
+  });
   return labArray;
 }
 
@@ -62,16 +63,32 @@ async function fetchCollabsByDate(name, begin, end="*"){
  */
 async function fetchCollabByCountry(name, country)
 {
-  let reqName = "&fq=labStructName_t:\"" + name + "\"";
-  let reqCountry = "&fq=labStructCountry_t:" + country;
+  let reqName = "&fq=labStructName_sci:\"" + name + "\"";
+  let reqCountry = "&fq=labStructCountry_sci:" + country;
   await fetch(collabUrl + reqName + reqCountry)
   .then(function(response) {
     return response.json();
   })
   .then(async function(myJson) {
     await labJsonToArray (myJson.response.docs, country);
-  })
+  });
   return labArray;
+}
+
+async function checkLabExists (name)
+{
+  let reqName = "&fq=labStructName_sci:\"" + name + "\"";
+  let res;
+  await fetch(checkLabExistsUrl + reqName)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(myJson) {
+    res = myJson.response.docs.length == 0 ? false : true;
+  });
+  console.log(checkLabExistsUrl + reqName)
+  console.log(res)
+  return res;
 }
 
 async function labJsonToArray  (data, country=null)
@@ -115,5 +132,6 @@ export default {
   fetchLabCollab: fetchLabCollab,
   fetchCollabsByDate: fetchCollabsByDate,
   fetchCollabByCountry: fetchCollabByCountry,
-  getCollabInfoArray: getCollabInfoArray
+  getCollabInfoArray: getCollabInfoArray,
+  checkLabExists: checkLabExists
 }
