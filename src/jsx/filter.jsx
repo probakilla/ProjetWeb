@@ -30,7 +30,6 @@ class Filters extends Component {
   }
 
   sinceFilter = async function() {
-    alert(getInputValue(SINCE_ID));
     let labArray = await RequestsHal.fetchCollabsByDate(UserSession.getLabs(), getInputValue(SINCE_ID));
     Main.updateMap(labArray);
   }
@@ -38,7 +37,6 @@ class Filters extends Component {
   timeSlotFilter = async function() {
     const from = getInputValue(FROM_ID);
     const to = getInputValue(TO_ID);
-    alert(from + " " + to);
     let labArray = await RequestsHal.fetchCollabsByDate(UserSession.getLabs(), from, to);
     Main.updateMap(labArray);
   }
