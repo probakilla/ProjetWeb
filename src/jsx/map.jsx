@@ -3,16 +3,16 @@ import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import { renderToStaticMarkup } from "react-dom/server";
 import { divIcon } from "leaflet";
 import UserSession from "../js/userSession";
-import RequestsHal from "../js/requestsHal";
 import Index from "../index";
 import "../css/map.css";
-import requestsHal from "../js/requestsHal";
+import RequestHal from "../js/requestsHal";
 
 const latIndex = 0;
 const lngIndex = 1;
 const labNameIndex = 2;
-const titleIndex = 0
-const releasedDateIndex = 1
+const titleIndex = 0;
+const releasedDateIndex = 1;
+const collaboratorsIndex = 2;
 
 class WorldMap extends Component {
   constructor(props) {
@@ -40,7 +40,7 @@ class WorldMap extends Component {
 
   onMarkerClick = (e) => {
     let array = [];
-    let collabArray = requestsHal.getCollabInfoArray();
+    let collabArray = RequestHal.getCollabInfoArray();
     array.push(this.state.labArray[e.target.options.id][labNameIndex]);
     for (let i = 0; i < collabArray.length; ++i)
     {
@@ -49,7 +49,8 @@ class WorldMap extends Component {
       {
         if (this.state.labArray[e.target.options.id][labNameIndex] == collabArray[i][labNameIndex][j])
         {
-          array.push([collabArray[i][titleIndex], collabArray[i][releasedDateIndex]]);
+          array.push([collabArray[i][titleIndex], collabArray[i][releasedDateIndex],collabArray[i][collaboratorsIndex]]);
+          // Avoid redundancy because sometime a lab is twice in the hal api
           break;
         }
       }

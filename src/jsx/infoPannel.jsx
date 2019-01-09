@@ -5,6 +5,7 @@ import "../css/infoPannel.css";
 
 const titleIndex = 0
 const releasedDateIndex = 1
+const collaboratorsIndex = 2
 let selectInfoArray
 
 class SessionData extends Component {
@@ -38,11 +39,17 @@ class InfoData extends Component {
     </div>)
     for (let i = 1; i < selectInfoArray.length; ++i)
     {
+      let stringCollaborators = "";
+      for (let j = 0; j < selectInfoArray[i][releasedDateIndex+1].length; ++j)
+      {
+        stringCollaborators += "[" + selectInfoArray[i][collaboratorsIndex][j] + "] ";
+      }
       infoLab.push(
         <div key={i} className="container">
         <p className="collab-info">
           Nom de l&apos;article : {selectInfoArray[i][titleIndex]} <br />
-          Date de sortie : {selectInfoArray[i][releasedDateIndex]}
+          Date de sortie : {selectInfoArray[i][releasedDateIndex]} <br />
+          Collaborateurs : {stringCollaborators}
         </p>
       </div>
       )

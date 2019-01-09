@@ -66,16 +66,12 @@ async function labJsonToArray  (data, country=null)
       collabInfo.push(data[i].title_s, data[i].releasedDateY_i);
       for (let j = 0; j < data[i].labStructAddress_s.length; ++j)
       { 
-        // There also "INCOMING" and "OLD"
-        if (data[i].labStructValid_s[j] == "VALID")
+        // search
+        let results = await provider.search({ query: data[i].labStructAddress_s [j]});
+        if (typeof results[0] != 'undefined' && (isNull(country) || ((country == data[i].labStructCountry_s[j]) || (data[i].labStructName_s[j].toUpperCase() == UserSession.getLabs().toUpperCase()))))
         {
-          // search
-          let results = await provider.search({ query: data[i].labStructAddress_s [j]});
-          if (typeof results[0] != 'undefined' && (isNull(country) || ((country == data[i].labStructCountry_s[j]) || (data[i].labStructName_s[j].toUpperCase() == UserSession.getLabs().toUpperCase()))))
-          {
-            labArray.push([results[0].y, results[0].x, data[i].labStructName_s [j], data[i].title_s, data[i].releasedDateY_i]);
-            collaborators.push(data[i].labStructName_s [j]);
-          }
+          labArray.push([results[0].y, results[0].x, data[i].labStructName_s [j], data[i].title_s, data[i].releasedDateY_i]);
+          collaborators.push(data[i].labStructName_s [j]);
         }
       }
       collabInfo.push(collaborators);
