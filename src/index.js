@@ -37,7 +37,7 @@ Display(<HomeNavbar />, "navbar-container");
 
 Display(<WorldMap ref={c => (worldmap = c)} />, "map-col");
 
-dispMarker();
+UserSession.exists() ? dispMarker() : null
 
 Display(<Form register={true} />, "register-col");
 Display(<Form register={false} />, "connection-col");
