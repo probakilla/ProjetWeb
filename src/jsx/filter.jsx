@@ -29,14 +29,18 @@ class Filters extends Component {
     this.countryFilter = this.countryFilter.bind(this);
   }
 
-  sinceFilter() {
+  sinceFilter = async function() {
     alert(getInputValue(SINCE_ID));
+    let labArray = await RequestsHal.fetchCollabsByDate(UserSession.getLabs(), getInputValue(SINCE_ID));
+    Main.updateMap(labArray);
   }
 
-  timeSlotFilter() {
+  timeSlotFilter = async function() {
     const from = getInputValue(FROM_ID);
     const to = getInputValue(TO_ID);
     alert(from + " " + to);
+    let labArray = await RequestsHal.fetchCollabsByDate(UserSession.getLabs(), from, to);
+    Main.updateMap(labArray);
   }
 
   countryFilter = async function () {
@@ -60,7 +64,7 @@ class Filters extends Component {
             <DoubleInputForm
               idFrom={FROM_ID}
               idTo={TO_ID}
-              label="Plage horaire"
+              label="Plage d'année"
               onClick={this.timeSlotFilter}
             />
             <hr />
