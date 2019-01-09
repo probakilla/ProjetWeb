@@ -51,15 +51,6 @@ class FormUser extends Component {
           name="labs"
           onChange={props.handleChange}
         />
-      ),
-      inputTeams: (
-        <TextInput
-          labelText="Equipe"
-          id="teams-input"
-          type="text"
-          name="teams"
-          onChange={props.handleChange}
-        />
       )
     };
     this.render = this.render.bind(this);
@@ -71,7 +62,6 @@ class FormUser extends Component {
         {this.state.inputUsername}
         {this.state.inputPassword}
         {this.state.register ? this.state.inputLabs : null}
-        {this.state.register ? this.state.inputTeams : null}
         <SubmitButton />
       </form>
     );
@@ -90,7 +80,6 @@ class Form extends Component {
     this.state = {
       username: "",
       password: "",
-      teams: "",
       labs: "",
       showModal: false,
       modalMsg: "",
@@ -125,7 +114,6 @@ class Form extends Component {
     let data = JSON.stringify({
       username: this.state.username,
       password: this.state.password,
-      teams: this.state.teams,
       labs: this.state.labs
     });
     const correct = await request.sendUser(data);
@@ -146,7 +134,6 @@ class Form extends Component {
     if (response !== null) {
       UserSession.connectUser(
         response.username,
-        response.teams,
         response.labs
       );
       this.setState({

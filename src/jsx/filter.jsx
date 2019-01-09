@@ -8,7 +8,6 @@ import {
 const SINCE_ID = "since-date";
 const FROM_ID = "from-date";
 const TO_ID = "to-date";
-const TEAM_ID = "team-filter";
 const COUNTY_ID = "country-filter";
 
 function getInputValue(id) {
@@ -24,7 +23,6 @@ class Filters extends Component {
     };
     this.sinceFilter = this.sinceFilter.bind(this);
     this.timeSlotFilter = this.timeSlotFilter.bind(this);
-    this.teamFilter = this.teamFilter.bind(this);
     this.countryFilter = this.contryFilter.bind(this);
   }
 
@@ -36,10 +34,6 @@ class Filters extends Component {
     const from = getInputValue(FROM_ID);
     const to = getInputValue(TO_ID);
     alert(from + " " + to);
-  }
-
-  teamFilter() {
-    alert(getInputValue(TEAM_ID));
   }
 
   contryFilter() {
@@ -64,13 +58,6 @@ class Filters extends Component {
               idTo={TO_ID}
               label="Plage horaire"
               onClick={this.timeSlotFilter}
-            />
-            <hr />
-            <SingleInputForm
-              id={TEAM_ID}
-              type="text"
-              label="Filtre d'équipe"
-              onClick={this.teamFilter}
             />
             <hr />
             <SingleSelectInputForm

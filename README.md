@@ -77,8 +77,8 @@ La base de données est une base mongoDB hébergée en ligne sur le site mlab et
 comporte les collections suivantes :
 
 > _User_
-> | username | password | teams | labs |
-> | :------: | :------: | :---: | :---: |
+> | username | password | labs |
+> | :------: | :------: | :---: |
 
 ## Enoncé
 

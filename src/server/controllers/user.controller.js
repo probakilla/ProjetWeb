@@ -40,7 +40,6 @@ exports.userRegister = (req, res) => {
     username: req.body.username,
     password: encrypted,
     labs: req.body.labs,
-    teams: req.body.teams
   });
   user.save(err => {
     if (err) handleError(err, res);
@@ -51,14 +50,13 @@ exports.userRegister = (req, res) => {
 exports.userCredentials = (req, res) => {
   User.findOne(
     { username: req.params.uname },
-    "password labs teams",
+    "password labs",
     (err, user) => {
       if (err) handleError(err, res);
       if (decrypt(user.password, key) === req.params.pswd) {
         const obj = {
           username: req.params.uname,
-          labs: user.labs,
-          teams: user.teams
+          labs: user.labs
         };
         res.status(HttpCodes.ACCEPTED).send(JSON.stringify(obj));
       }

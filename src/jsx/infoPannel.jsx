@@ -18,7 +18,6 @@ class SessionData extends Component {
         <p>
           Votre laboratoire : {UserSession.getLabs()} <br />
         </p>
-        <p>Votre équipe : {UserSession.getTeams()}</p>
       </div>
     );
   }
