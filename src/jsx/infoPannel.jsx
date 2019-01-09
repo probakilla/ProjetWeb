@@ -3,10 +3,11 @@ import { Button } from "./button";
 import UserSession from "../js/userSession";
 import "../css/infoPannel.css";
 
-const titleIndex = 0
-const releasedDateIndex = 1
-const collaboratorsIndex = 2
-let selectInfoArray
+const labNameIndex = 0;
+const titleIndex = 0;
+const releasedDateIndex = 1;
+const collaboratorsIndex = 2;
+let selectedLabArrayInfo;
 
 class SessionData extends Component {
   constructor(props) {
@@ -34,21 +35,21 @@ class InfoData extends Component {
     infoLab.push(
       <div className="container">
       <strong>
-        Collaborations entre: {UserSession.getLabs()} et {selectInfoArray[0]}:
+        Collaborations entre: {UserSession.getLabs()} et {selectedLabArrayInfo[labNameIndex]}:
       </strong>
     </div>)
-    for (let i = 1; i < selectInfoArray.length; ++i)
+    for (let i = 1; i < selectedLabArrayInfo.length; ++i)
     {
       let stringCollaborators = "";
-      for (let j = 0; j < selectInfoArray[i][releasedDateIndex+1].length; ++j)
+      for (let j = 0; j < selectedLabArrayInfo[i][collaboratorsIndex].length; ++j)
       {
-        stringCollaborators += "[" + selectInfoArray[i][collaboratorsIndex][j] + "] ";
+        stringCollaborators += "[" + selectedLabArrayInfo[i][collaboratorsIndex][j] + "] ";
       }
       infoLab.push(
         <div key={i} className="container">
         <p className="collab-info">
-          Nom de l&apos;article : {selectInfoArray[i][titleIndex]} <br />
-          Date de sortie : {selectInfoArray[i][releasedDateIndex]} <br />
+          Nom de l&apos;article : {selectedLabArrayInfo[i][titleIndex]} <br />
+          Date de sortie : {selectedLabArrayInfo[i][releasedDateIndex]} <br />
           Collaborateurs : {stringCollaborators}
         </p>
       </div>
@@ -76,7 +77,7 @@ class InfoPannel extends Component {
   }
 
   updateInfoPannel(data){
-    selectInfoArray = data
+    selectedLabArrayInfo = data
     this.setState({data: <InfoData />, resetButton: <Button
       text="Réinitialiser la sélection"
       style="btn btn-block btn-danger btn-cancel"
