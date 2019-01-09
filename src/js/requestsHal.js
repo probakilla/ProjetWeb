@@ -49,6 +49,8 @@ async function fetchCollabsByDate(name, begin, end="*"){
   })
   .then(async function(myJson) {
     await labJsonToArray (myJson.response.docs);
+  }).catch(function() {
+    alert("Veuillez entrez une valeur avant de comfirmer le filtre");
   });
   return labArray;
 }
@@ -64,7 +66,7 @@ async function fetchCollabsByDate(name, begin, end="*"){
 async function fetchCollabByCountry(name, country)
 {
   let reqName = "&fq=labStructName_sci:\"" + name + "\"";
-  let reqCountry = "&fq=labStructCountry_sci:" + country;
+  let reqCountry = "&fq=labStructCountry_s:" + country;
   await fetch(collabUrl + reqName + reqCountry)
   .then(function(response) {
     return response.json();
@@ -86,8 +88,6 @@ async function checkLabExists (name)
   .then(function(myJson) {
     res = myJson.response.docs.length == 0 ? false : true;
   });
-  console.log(checkLabExistsUrl + reqName)
-  console.log(res)
   return res;
 }
 
