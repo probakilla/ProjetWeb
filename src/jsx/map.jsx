@@ -30,17 +30,18 @@ class WorldMap extends Component {
 
   updateArray(array){
     let that = this;
-    that.setState({labArray : array})
+    this.clearMarker();
+    that.setState({labArray : array});
   } 
 
   clearMarker = () => {
-    this.setState({labArray : []})
+    this.setState({labArray : []});
   }
 
   onMarkerClick = (e) => {
-    let array = []
-    let collabArray = requestsHal.getCollabInfoArray()
-    array.push(this.state.labArray[e.target.options.id][labNameIndex])
+    let array = [];
+    let collabArray = requestsHal.getCollabInfoArray();
+    array.push(this.state.labArray[e.target.options.id][labNameIndex]);
     for (let i = 0; i < collabArray.length; ++i)
     {
 
@@ -48,12 +49,12 @@ class WorldMap extends Component {
       {
         if (this.state.labArray[e.target.options.id][labNameIndex] == collabArray[i][labNameIndex][j])
         {
-          array.push([collabArray[i][titleIndex], collabArray[i][releasedDateIndex]])
+          array.push([collabArray[i][titleIndex], collabArray[i][releasedDateIndex]]);
           break;
         }
       }
     }
-    Index.updateInfoPannel(array)
+    Index.updateInfoPannel(array);
   }
 
   render() {
@@ -74,14 +75,14 @@ class WorldMap extends Component {
         <Popup>
         {this.state.labArray[i][labNameIndex]}
         </Popup>
-      </Marker>)
+      </Marker>);
       }
       else {
         listMarker.push(<Marker key={i} id={i} position={[this.state.labArray[i][latIndex], this.state.labArray[i][lngIndex]]} onclick={this.onMarkerClick}>
           <Popup>
           {this.state.labArray[i][labNameIndex]}
           </Popup>
-        </Marker>)
+        </Marker>);
       }
     }
     return (      

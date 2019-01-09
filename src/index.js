@@ -17,12 +17,16 @@ require("babel-polyfill");
 
 // Display all lab in the WorldMap
 const dispMarker = async function() {
-  const test = await requestsHal.fetchLabCollab(UserSession.getLabs());
-  worldmap.updateArray(test);
+  const labArray = await requestsHal.fetchLabCollab(UserSession.getLabs());
+  updateMap(labArray)
 };
 
 const updateInfoPannel = function(array){
   infopannel.updateInfoPannel(array);
+}
+
+const updateMap = function(labArray) {
+  worldmap.updateArray(labArray);
 }
 
 // Will contain a reference to the WorldMap
@@ -42,5 +46,6 @@ display(<Filters />, "filters-col");
 display(<InfoPannel ref={c => (infopannel = c)} />, "info-pannel");
 
 export default {
-  updateInfoPannel: updateInfoPannel
+  updateInfoPannel: updateInfoPannel,
+  updateMap: updateMap
 }

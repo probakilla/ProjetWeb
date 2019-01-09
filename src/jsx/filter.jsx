@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import requestsHal from "../js/requestsHal";
+import main from "../index";
+import UserSession from "../js/userSession";
 import {
   SingleInputForm,
   DoubleInputForm,
@@ -23,7 +26,7 @@ class Filters extends Component {
     };
     this.sinceFilter = this.sinceFilter.bind(this);
     this.timeSlotFilter = this.timeSlotFilter.bind(this);
-    this.countryFilter = this.contryFilter.bind(this);
+    this.countryFilter = this.countryFilter.bind(this);
   }
 
   sinceFilter() {
@@ -36,8 +39,9 @@ class Filters extends Component {
     alert(from + " " + to);
   }
 
-  contryFilter() {
-    alert(getInputValue(COUNTY_ID));
+  countryFilter = async function () {
+    let labArray = await requestsHal.fetchCollabByCountry(UserSession.getLabs(), getInputValue(COUNTY_ID));
+    main.updateMap(labArray);
   }
 
   render() {
