@@ -49,8 +49,6 @@ async function fetchCollabsByDate(name, begin, end="*"){
   })
   .then(async function(myJson) {
     await labJsonToArray (myJson.response.docs);
-  }).catch(function() {
-    alert("Veuillez entrez une valeur avant de comfirmer le filtre");
   });
   return labArray;
 }

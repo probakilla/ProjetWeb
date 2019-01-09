@@ -35,7 +35,13 @@ class Filters extends Component {
       alert("Veuillez vous connecter");
       return;
     }
-    let labArray = await RequestsHal.fetchCollabsByDate(UserSession.getLabs(), getInputValue(SINCE_ID));
+    let since = getInputValue(SINCE_ID);
+    if (since === "")
+    {
+      alert("Veuillez entrez une valeur avant de confirmer le filtre");
+      return;
+    }
+    let labArray = await RequestsHal.fetchCollabsByDate(UserSession.getLabs(), since);
     Main.updateMap(labArray);
   }
 
@@ -47,6 +53,11 @@ class Filters extends Component {
     }
     const from = getInputValue(FROM_ID);
     const to = getInputValue(TO_ID);
+    if (from === "" || to == "")
+    {
+      alert("Veuillez entrez une valeur avant de confirmer le filtre");
+      return;
+    }
     let labArray = await RequestsHal.fetchCollabsByDate(UserSession.getLabs(), from, to);
     Main.updateMap(labArray);
   }
