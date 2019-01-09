@@ -64,19 +64,24 @@ class InfoPannel extends Component {
     this.state = {
       infotext: "Veuillez vous connecter",
       txtHeader: "Informations",
-      data: <SessionData />
+      data: <SessionData />,
+      resetButton: []
     };
     this.deselection = this.deselection.bind(this);
     this.updateInfoPannel = this.updateInfoPannel.bind(this);
   }
 
   deselection() {
-    this.setState({data: <SessionData />})
+    this.setState({data: <SessionData />, resetButton: []})
   }
 
   updateInfoPannel(data){
     selectInfoArray = data
-    this.setState({data: <InfoData />})
+    this.setState({data: <InfoData />, resetButton: <Button
+      text="Réinitialiser la sélection"
+      style="btn btn-block btn-danger btn-cancel"
+      action={this.deselection}
+    />})
   }
 
   render() {
@@ -89,11 +94,7 @@ class InfoPannel extends Component {
               {UserSession.exists() ? this.state.data : this.state.infotext}
             </span>
             <br />
-            <Button
-              text="Réinitialiser le filtre"
-              style="btn btn-block btn-danger btn-cancel"
-              action={this.deselection}
-            />
+              {this.state.resetButton}
           </div>
         </div>
       </div>
