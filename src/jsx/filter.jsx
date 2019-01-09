@@ -68,7 +68,13 @@ class Filters extends Component {
       alert("Veuillez vous connecter");
       return;
     }
-    let labArray = await RequestsHal.fetchCollabByCountry(UserSession.getLabs(), getInputValue(COUNTY_ID));
+    let country = getInputValue(COUNTY_ID);
+    if (country === "")
+    {
+      alert("Veuillez entrez une valeur avant de confirmer le filtre");
+      return;
+    }
+    let labArray = await RequestsHal.fetchCollabByCountry(UserSession.getLabs(), country);
     Main.updateMap(labArray);
   }
 
