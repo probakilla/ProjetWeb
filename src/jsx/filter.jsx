@@ -30,11 +30,21 @@ class Filters extends Component {
   }
 
   sinceFilter = async function() {
+    if (!UserSession.exists())
+    {
+      alert("Veuillez vous connecter");
+      return;
+    }
     let labArray = await RequestsHal.fetchCollabsByDate(UserSession.getLabs(), getInputValue(SINCE_ID));
     Main.updateMap(labArray);
   }
 
   timeSlotFilter = async function() {
+    if (!UserSession.exists())
+    {
+      alert("Veuillez vous connecter");
+      return;
+    }
     const from = getInputValue(FROM_ID);
     const to = getInputValue(TO_ID);
     let labArray = await RequestsHal.fetchCollabsByDate(UserSession.getLabs(), from, to);
@@ -42,6 +52,11 @@ class Filters extends Component {
   }
 
   countryFilter = async function () {
+    if (!UserSession.exists())
+    {
+      alert("Veuillez vous connecter");
+      return;
+    }
     let labArray = await RequestsHal.fetchCollabByCountry(UserSession.getLabs(), getInputValue(COUNTY_ID));
     Main.updateMap(labArray);
   }
