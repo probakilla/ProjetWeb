@@ -13,7 +13,7 @@ let collabInfoArray = [];
  * Send a request to the external Hal API in order to get laboratories that have
  * collaborate with the given one.
  * @param {string} name The name of the laboratory to get its collaborations.
- * @returns {Array[]} Retrieves an array that contains the lab's coordinates, 
+ * @returns {Array[]} Retrieves an array that contains the lab's coordinates,
  * the lab's name for each collaborations and collaborators.
  */
 async function fetchLabCollab(name)
@@ -34,9 +34,9 @@ async function fetchLabCollab(name)
  * collaborate with the given one, in a given period of time.
  * @param {string} name The name of the laboratory to get its collaborations.
  * @param {string} begin The minimal year to search for a collaboration.
- * @param {string} end The maximal year to search for a collaboration. Its a 
+ * @param {string} end The maximal year to search for a collaboration. Its a
  * optionnal parameter and if its not given, it will search with no upper limit.
- * @returns {Array[]} Retrieves an array that contains the lab's coordinates, 
+ * @returns {Array[]} Retrieves an array that contains the lab's coordinates,
  * the lab's name for each collaborations and collaborators.
  */
 async function fetchCollabsByDate(name, begin, end="*"){
@@ -57,7 +57,7 @@ async function fetchCollabsByDate(name, begin, end="*"){
  * collaborate with the given one, in a given country.
  * @param {string} name The name of the laboratory to get its collaborations.
  * @param {string} country The country code, for example fr for france.
- * @returns {Array[]} Retrieves an array that contains the lab's coordinates, 
+ * @returns {Array[]} Retrieves an array that contains the lab's coordinates,
  * the lab's name for each collaborations and collaborators.
  */
 async function fetchCollabByCountry(name, country)
@@ -86,7 +86,7 @@ async function labJsonToArray  (data, country=null)
       let collaborators = [];
       collabInfo.push(data[i].title_s, data[i].releasedDateY_i);
       for (let j = 0; j < data[i].labStructAddress_s.length; ++j)
-      { 
+      {
         // search
         let results = await provider.search({ query: data[i].labStructAddress_s [j]});
         if (typeof results[0] != 'undefined' && (isNull(country) || ((country == data[i].labStructCountry_s[j]) || (data[i].labStructName_s[j].toUpperCase() == UserSession.getLabs().toUpperCase()))))

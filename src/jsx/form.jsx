@@ -105,6 +105,13 @@ class Form extends Component {
     invalidField.innerHTML = passwordMessage;
   }
 
+  badLab(message) {
+    let labInput = document.getElementById("labs-input");
+    labInput.classList.add("is-invalid");
+    let invalidField = document.getElementById("labs-input-invalid");
+    invalidField.innerHTML = message;
+  }
+
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
@@ -117,13 +124,19 @@ class Form extends Component {
       labs: this.state.labs
     });
     const correct = await request.sendUser(data);
-    if (correct) {
-      this.setState({
-        showModal: true,
-        modalMsg: "Inscription réussie ! Bienvenue " + this.state.username
-      });
-    } else {
-      this.badRegister("Nom d'utilisateur déjà utilisé");
+    switch (correct) {
+      case request.INCRIPTION_OK:
+        this.setState({
+          showModal: true,
+          modalMsg: "Inscription réussie ! Bienvenue " + this.state.username
+        });
+        break;
+      case request.BAD_PASSWORD:
+        this.badRegister("Nom d'utilisateur déjà utilisé");
+        break;
+      case request.BAD_LAB:
+        this.badLab("Le laboratoir entré d'existe pas");
+        break;
     }
   }
 
@@ -132,10 +145,7 @@ class Form extends Component {
     const params = "/" + this.state.username + "&" + this.state.password;
     const response = await request.userConnect(params);
     if (response !== null) {
-      UserSession.connectUser(
-        response.username,
-        response.labs
-      );
+      UserSession.connectUser(response.username, response.labs);
       this.setState({
         showModal: true,
         modalMsg:

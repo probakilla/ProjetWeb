@@ -15,7 +15,7 @@ class SessionData extends Component {
 
   render() {
     return (
-      <div className="container">    
+      <div className="container">
         <p>
           Votre laboratoire : {UserSession.getLabs()} <br />
         </p>
