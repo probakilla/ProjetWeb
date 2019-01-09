@@ -33,6 +33,8 @@ class WorldMap extends Component {
 
   updateArray(array){
     this.clearMarker();
+    if (array.length === 0)
+      alert("Recherche infructueuse");
     this.setState({labArray : array});
   } 
 
