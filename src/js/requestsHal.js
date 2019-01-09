@@ -9,7 +9,13 @@ const provider = new EsriProvider();
 let labArray = [];
 let collabInfoArray = [];
 
-// Retrieve lab that collaborate with the lab named "name"
+/**
+ * Send a request to the external Hal API in order to get laboratories that have
+ * collaborate with the given one.
+ * @param {string} name The name of the laboratory to get its collaborations.
+ * @returns {Array[]} Retrieves an array that contains the lab's coordinates, 
+ * the lab's name for each collaborations and collaborators.
+ */
 async function fetchLabCollab(name)
 {
   let reqName = "&fq=labStructName_t:\"" + name + "\"";
@@ -23,9 +29,16 @@ async function fetchLabCollab(name)
   return labArray;
 }
 
-// Retrieve lab that collaborate with the lab named "name" between
-// "begin" and "end". If no value are passed for end, it will search
-// at the maximum.
+/**
+ * Send a request to the external Hal API in order to get laboratories that have
+ * collaborate with the given one, in a given period of time.
+ * @param {string} name The name of the laboratory to get its collaborations.
+ * @param {string} begin The minimal year to search for a collaboration.
+ * @param {string} end The maximal year to search for a collaboration. Its a 
+ * optionnal parameter and if its not given, it will search with no upper limit.
+ * @returns {Array[]} Retrieves an array that contains the lab's coordinates, 
+ * the lab's name for each collaborations and collaborators.
+ */
 async function fetchCollabsByDate(name, begin, end="*"){
   let reqName = "&fq=labStructName_t:\"" + name + "\"";
   let date = "&fq=releasedDateY_i:[" + begin + " TO " + end + "]";
@@ -39,10 +52,18 @@ async function fetchCollabsByDate(name, begin, end="*"){
   return labArray;
 }
 
+/**
+ * Send a request to the external Hal API in order to get laboratories that have
+ * collaborate with the given one, in a given country.
+ * @param {string} name The name of the laboratory to get its collaborations.
+ * @param {string} country The country code, for example fr for france.
+ * @returns {Array[]} Retrieves an array that contains the lab's coordinates, 
+ * the lab's name for each collaborations and collaborators.
+ */
 async function fetchCollabByCountry(name, country)
 {
   let reqName = "&fq=labStructName_t:\"" + name + "\"";
-  let reqCountry = "&fq=labStructCountry_s:" + country;
+  let reqCountry = "&fq=labStructCountry_t:" + country;
   await fetch(collabUrl + reqName + reqCountry)
   .then(function(response) {
     return response.json();
@@ -70,7 +91,7 @@ async function labJsonToArray  (data, country=null)
         let results = await provider.search({ query: data[i].labStructAddress_s [j]});
         if (typeof results[0] != 'undefined' && (isNull(country) || ((country == data[i].labStructCountry_s[j]) || (data[i].labStructName_s[j].toUpperCase() == UserSession.getLabs().toUpperCase()))))
         {
-          labArray.push([results[0].y, results[0].x, data[i].labStructName_s [j], data[i].title_s, data[i].releasedDateY_i]);
+          labArray.push([results[0].y, results[0].x, data[i].labStructName_s [j]]);
           collaborators.push(data[i].labStructName_s [j]);
         }
       }
@@ -89,6 +110,7 @@ function clearArray(array)
 {
   array.splice(0, array.length);
 }
+
 export default {
   fetchLabCollab: fetchLabCollab,
   fetchCollabsByDate: fetchCollabsByDate,
