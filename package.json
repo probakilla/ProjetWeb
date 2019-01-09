@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./node_modules/pm2/bin/pm2 start src/server/app.js --watch && webpack-dev-server --open --mode development",
+    "start": "./node_modules/pm2/bin/pm2 start src/server/app.js --watch && ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "dev": "./node_modules/pm2/bin/pm2 start src/server/app.js --watch && webpack-dev-server --open --mode development",
     "stop": "./node_modules/pm2/bin/pm2 stop src/server/app.js"
   },
   "repository": {
