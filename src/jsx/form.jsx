@@ -3,9 +3,9 @@ import ReactModal from "react-modal";
 import PropTypes from "prop-types";
 import { TextInput } from "./input";
 import { SubmitButton, ReturnToIndexButton, ValidButton } from "./button";
+import UserSession from "../js/userSession";
 import "../css/connection.css";
 import "../css/modal.css";
-import UserSession from "../js/userSession";
 
 const request = require("../js/requests");
 require("babel-polyfill");

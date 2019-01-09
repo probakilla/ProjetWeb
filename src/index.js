@@ -1,11 +1,11 @@
 import React from "react";
-import display from "./jsx/display";
+import Display from "./jsx/display";
 import HomeNavbar from "./jsx/navbar";
 import WorldMap from "./jsx/map";
 import Filters from "./jsx/filter";
 import InfoPannel from "./jsx/infoPannel";
 import Form from "./jsx/form";
-import requestsHal from "./js/requestsHal";
+import RequestsHal from "./js/requestsHal";
 import UserSession from "./js/userSession";
 import "./css/button.css";
 import "./css/filter.css";
@@ -17,7 +17,7 @@ require("babel-polyfill");
 
 // Display all lab in the WorldMap
 const dispMarker = async function() {
-  const labArray = await requestsHal.fetchLabCollab(UserSession.getLabs());
+  const labArray = await RequestsHal.fetchLabCollab(UserSession.getLabs());
   updateMap(labArray)
 };
 
@@ -33,17 +33,17 @@ const updateMap = function(labArray) {
 let worldmap;
 let infopannel;
 
-display(<HomeNavbar />, "navbar-container");
+Display(<HomeNavbar />, "navbar-container");
 
-display(<WorldMap ref={c => (worldmap = c)} />, "map-col");
+Display(<WorldMap ref={c => (worldmap = c)} />, "map-col");
 
 dispMarker();
 
-display(<Form register={true} />, "register-col");
-display(<Form register={false} />, "connection-col");
+Display(<Form register={true} />, "register-col");
+Display(<Form register={false} />, "connection-col");
 
-display(<Filters />, "filters-col");
-display(<InfoPannel ref={c => (infopannel = c)} />, "info-pannel");
+Display(<Filters />, "filters-col");
+Display(<InfoPannel ref={c => (infopannel = c)} />, "info-pannel");
 
 export default {
   updateInfoPannel: updateInfoPannel,

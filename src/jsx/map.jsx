@@ -3,9 +3,9 @@ import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import { renderToStaticMarkup } from "react-dom/server";
 import { divIcon } from "leaflet";
 import UserSession from "../js/userSession";
-import Index from "../index";
-import "../css/map.css";
+import Main from "../index";
 import RequestHal from "../js/requestsHal";
+import "../css/map.css";
 
 const latIndex = 0;
 const lngIndex = 1;
@@ -55,7 +55,7 @@ class WorldMap extends Component {
         }
       }
     }
-    Index.updateInfoPannel(array);
+    Main.updateInfoPannel(array);
   }
 
   render() {

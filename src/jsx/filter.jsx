@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import requestsHal from "../js/requestsHal";
-import main from "../index";
+import RequestsHal from "../js/requestsHal";
+import Main from "../index";
 import UserSession from "../js/userSession";
 import {
   SingleInputForm,
@@ -40,8 +40,8 @@ class Filters extends Component {
   }
 
   countryFilter = async function () {
-    let labArray = await requestsHal.fetchCollabByCountry(UserSession.getLabs(), getInputValue(COUNTY_ID));
-    main.updateMap(labArray);
+    let labArray = await RequestsHal.fetchCollabByCountry(UserSession.getLabs(), getInputValue(COUNTY_ID));
+    Main.updateMap(labArray);
   }
 
   render() {

@@ -2,9 +2,9 @@
 import { EsriProvider } from 'leaflet-geosearch';
 import { isNull } from 'util';
 import UserSession from './userSession';
+
 const nbRespPerReq = 42;
 const collabUrl = "https://api.archives-ouvertes.fr/search/?fl=*&q=collaboration_s:*&sort=releasedDateY_i asc&rows="+nbRespPerReq;
-// setup
 const provider = new EsriProvider();
 let labArray = [];
 let collabInfoArray = [];
