@@ -6,9 +6,8 @@
   "scripts": {
     "start": "npm run build && pm2-runtime start ecosystem.config.js --env production",
     "build": "webpack --mode production",
-    "dev": "webpack-dev-server --open --mode development && pm2-runtime start ecosystem.config.js --env production --watch",
-    "stop": "pm2-runtime stop app",
-    "restart": "pm2 restart app",
+    "dev": "pm2 start ecosystem.config.js --env development --watch -f && webpack-dev-server --open --mode development",
+    "stop": "pm2 stop app",
     "show-api": "pm2 ls"
   },
   "repository": {
