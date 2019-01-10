@@ -47,7 +47,7 @@ module.exports = {
     port: 4444,
     open: true,
     proxy: {
-      "/api": "https://collab-lab.herokuapp.com/"
+      "/api": "http://localhost:8080"
     }
   },
   plugins: [

@@ -12,7 +12,6 @@ import "./css/filter.css";
 import "./css/connection.css";
 import "./css/map.css";
 
-
 require("babel-polyfill");
 
 // Display all lab in the WorldMap

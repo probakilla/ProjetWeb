@@ -15,7 +15,7 @@ const db = mongoose.connection;
 db.on("error", Console.error.bind(console, "MongoDB connection error:"));
 
 const app = express();
-const server = http.Server(app);
+const server = new http.Server(app);
 const port = process.env.PORT || 4444;
 
 app.use(express.static("dist"));
