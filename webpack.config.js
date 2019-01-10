@@ -1,7 +1,15 @@
+const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const CleanWebPackPlugin = require("clean-webpack-plugin");
+
+const outputDirectory = "dist";
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: ["babel-polyfill", "./src/index.js"],
+  output: {
+    path: path.join(__dirname, outputDirectory),
+    filename: "bundle.js"
+  },
   resolve: {
     extensions: [".js", ".jsx"]
   },
@@ -10,6 +18,13 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: [/node_modules/],
+        use: {
+          loader: "babel-loader"
+        }
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
         use: {
           loader: "babel-loader"
         }
@@ -28,7 +43,15 @@ module.exports = {
       }
     ]
   },
+  devServer: {
+    port: 3000,
+    open: true,
+    proxy: {
+      "/api": "http://localhost:8080"
+    }
+  },
   plugins: [
+    new CleanWebPackPlugin([outputDirectory]),
     new HtmlWebPackPlugin({
       template: "./src/index.html",
       filename: "./index.html"
