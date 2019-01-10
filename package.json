@@ -7,7 +7,7 @@
     "start": "npm run build && node src/server/app.js",
     "build": "webpack --mode production",
     "dev": "pm2 start src/server/app.js --watch && webpack-dev-server --open --mode development",
-    "stop": "pm2 stop src/server/app"
+    "stop": "pm2 stop src/server/app.js"
   },
   "repository": {
     "type": "git",
