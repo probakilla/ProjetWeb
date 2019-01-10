@@ -5,6 +5,7 @@ import { TextInput } from "./input";
 import { SubmitButton, ReturnToIndexButton, ValidButton } from "./button";
 import UserSession from "../js/userSession";
 import request from "../js/requests";
+import Display from "./jsx/display";
 import "../css/connection.css";
 import "../css/modal.css";
 
@@ -188,5 +189,8 @@ class Form extends Component {
     );
   }
 }
+
+Display(<Form register={true} />, "register-col");
+Display(<Form register={false} />, "connection-col");
 
 export default Form;

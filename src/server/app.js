@@ -26,4 +26,4 @@ app.get("/home", (req, res) => {
   res.status(HttpCodes.SUCCESS).sendFile("index.html");
 });
 const port = 4444;
-app.listen(port);
+app.listen(process.env.PORT || port);
