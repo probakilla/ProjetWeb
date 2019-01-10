@@ -12,6 +12,7 @@ const SINCE_ID = "since-date";
 const FROM_ID = "from-date";
 const TO_ID = "to-date";
 const COUNTY_ID = "country-filter";
+const LAB_ID = "lab-filter";
 
 function getInputValue(id) {
   return document.getElementById(id).value;
@@ -27,6 +28,11 @@ class Filters extends Component {
     this.sinceFilter = this.sinceFilter.bind(this);
     this.timeSlotFilter = this.timeSlotFilter.bind(this);
     this.countryFilter = this.countryFilter.bind(this);
+    this.labFilter = this.labFilter.bind(this);
+  }
+
+  labFilter = async function () {
+    alert("Guillaume est PD");
   }
 
   sinceFilter = async function() {
@@ -89,6 +95,13 @@ class Filters extends Component {
               type="number"
               label="Depuis"
               onClick={this.sinceFilter}
+            />
+            <hr />
+            <SingleInputForm
+              id={LAB_ID}
+              type="text"
+              label="Laboratoire"
+              onClick={this.labFilter}
             />
             <hr />
             <DoubleInputForm
