@@ -3,15 +3,11 @@
   "version": "1.0.0",
   "description": "## Table of Contents",
   "main": "index.js",
-  "directories": {
-    "test": "tests"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run build && node src/server/app.js",
-    "build": "./node_modules/webpack/bin/webpack.js",
-    "dev": "./node_modules/pm2/bin/pm2 start src/server/app.js --watch && webpack-dev-server --open --mode development",
-    "stop": "./node_modules/pm2/bin/pm2 stop src/server/app.js"
+    "build": "webpack --mode production",
+    "dev": "pm2 start src/server/app.js --watch && webpack-dev-server --open --mode development",
+    "stop": "pm2 stop src/server/app"
   },
   "repository": {
     "type": "git",

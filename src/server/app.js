@@ -21,12 +21,4 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/user", user);
 
-app.get("/", (req, res) => {
-  res.status(HttpCodes.SUCCESS).send("swagger");
-});
-
-app.get("/home", (req, res) => {
-  res.status(HttpCodes.SUCCESS).sendFile("index.html");
-});
-
 app.listen(process.env.PORT || port);
