@@ -2,7 +2,6 @@ const express = require("express");
 const user = require("./routes/user.route");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const HttpCodes = require("../js/httpCodes");
 const mongoose = require("mongoose");
 
 const dbUrl = "mongodb://admin:yoloswagg69@ds026658.mlab.com:26658/projetweb";
