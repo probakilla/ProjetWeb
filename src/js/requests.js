@@ -57,6 +57,8 @@ async function userConnect(params) {
       } else {
         return null;
       }
+    }).catch(function (){
+      return null;
     })
     .then(data => {
       ret = data;
