@@ -5,7 +5,7 @@ import { TextInput } from "./input";
 import { SubmitButton, ReturnToIndexButton, ValidButton } from "./button";
 import UserSession from "../js/userSession";
 import request from "../js/requests";
-import Display from "./jsx/display";
+import Display from "./display";
 import "../css/connection.css";
 import "../css/modal.css";
 
