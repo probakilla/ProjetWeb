@@ -32,7 +32,24 @@ class Filters extends Component {
   }
 
   labFilter = async function () {
-    alert("Guillaume est PD");
+    if (!UserSession.exists())
+    {
+      alert("Veuillez vous connecter");
+      return;
+    }
+    let labName = getInputValue(LAB_ID);
+    if (labName === "")
+    {
+      alert("Veuillez entrez une valeur avant de confirmer le filtre");
+      return;
+    }
+    if (!(await RequestsHal.checkLabExists(labName)))
+    {
+      alert("Le laboratoire entré n'éxiste pas");
+      return;
+    }
+    let labArray = await RequestsHal.fetchCollabBetweenLab(UserSession.getLabs(), labName);
+    Main.updateMap(labArray);
   }
 
   sinceFilter = async function() {

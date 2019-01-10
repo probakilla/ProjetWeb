@@ -30,6 +30,19 @@ async function fetchLabCollab(name)
   return labArray;
 }
 
+async function fetchCollabBetweenLab(labName1, labName2)
+{
+  let reqNames = "&fq=labStructName_sci:(\"" + labName1 + "\" \"" + labName2 + "\")";
+  await fetch(collabUrl + reqNames)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(async function(myJson) {
+    await labJsonToArray (myJson.response.docs);
+  });
+  return labArray;
+}
+
 /**
  * Send a request to the external Hal API in order to get laboratories that have
  * collaborate with the given one, in a given period of time.
@@ -131,5 +144,6 @@ export default {
   fetchCollabsByDate: fetchCollabsByDate,
   fetchCollabByCountry: fetchCollabByCountry,
   getCollabInfoArray: getCollabInfoArray,
-  checkLabExists: checkLabExists
+  checkLabExists: checkLabExists,
+  fetchCollabBetweenLab: fetchCollabBetweenLab
 }
