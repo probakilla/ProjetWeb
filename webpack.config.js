@@ -53,8 +53,8 @@ module.exports = {
   plugins: [
     new CleanWebPackPlugin([outputDirectory]),
     new HtmlWebPackPlugin({
-      template: "./src/index.html",
-      filename: "./index.html"
+      template: "src/index.html",
+      filename: "index.html"
     }),
     new HtmlWebPackPlugin({
       template: "./src/public/connection.html",

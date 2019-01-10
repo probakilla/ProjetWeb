@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const Console = require("console");
+const path = require("path");
 
 const dbUrl = "mongodb://admin:yoloswagg69@ds026658.mlab.com:26658/projetweb";
 const mongo = process.env.MONGODB_URI || dbUrl;
@@ -22,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/user", user);
 
 app.get("/", (req, res) => {
-  res.status(200).send("Welcome to the internal API!");
+  res.status(200).sendFile(path.join(__dirname, "index.html"));
 })
 
 app.listen(port, () => {
