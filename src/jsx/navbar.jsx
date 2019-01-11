@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactModal from "react-modal";
 import { RegisterButtons, LogOutButton, ValidButton } from "./button";
-import UserSession from "../js/userSession"
+import UserSession from "../js/userSession";
 import "../css/navbar.css";
 import "../css/modal.css";
 
@@ -21,7 +21,7 @@ class HomeNavbar extends Component {
     this.setState({
       goodbye: "A bientot " + UserSession.getName() + "!"
     });
-    UserSession.clear()
+    UserSession.clear();
     this.setState({ showModal: true });
   }
 
@@ -41,9 +41,7 @@ class HomeNavbar extends Component {
           {<ValidButton action={this.logOut} />}
         </ReactModal>
         <a className="navbar-brand navbar-border" href="#">
-          {UserSession.exists()
-            ? UserSession.getName()
-            : this.state.brand}
+          {UserSession.exists() ? UserSession.getName() : this.state.brand}
         </a>
         <span className="navbar-text ml-auto">
           {UserSession.exists() ? (

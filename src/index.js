@@ -17,16 +17,16 @@ require("babel-polyfill");
 // Display all lab in the WorldMap
 const dispMarker = async function() {
   const labArray = await RequestsHal.fetchLabCollab(UserSession.getLabs());
-  updateMap(labArray)
+  updateMap(labArray);
 };
 
-const updateInfoPannel = function(array){
+const updateInfoPannel = function(array) {
   infopannel.updateInfoPannel(array);
-}
+};
 
 const updateMap = function(labArray) {
   worldmap.updateArray(labArray);
-}
+};
 
 // Will contain a reference to the WorldMap
 let worldmap;
@@ -36,7 +36,7 @@ Display(<HomeNavbar />, "navbar-container");
 
 Display(<WorldMap ref={c => (worldmap = c)} />, "map-col");
 
-UserSession.exists() ? dispMarker() : null
+UserSession.exists() ? dispMarker() : null;
 
 Display(<Form register={true} />, "register-col");
 Display(<Form register={false} />, "connection-col");
@@ -47,4 +47,4 @@ Display(<InfoPannel ref={c => (infopannel = c)} />, "info-pannel");
 export default {
   updateInfoPannel: updateInfoPannel,
   updateMap: updateMap
-}
+};

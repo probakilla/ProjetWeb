@@ -1,8 +1,8 @@
 import RequestsHal from "../js/requestsHal";
 
 const HttpCodes = require("./httpCodes");
-//const URL_USER = window.location.protocol + "//" + window.location.host +  "/user";
-const URL_USER = "http://localhost:4444/user"
+const URL_USER =
+  window.location.protocol + "//" + window.location.host + "/user";
 const INCRIPTION_OK = 0;
 const BAD_PASSWORD = 1;
 const BAD_LAB = 2;

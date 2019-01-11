@@ -129,7 +129,11 @@ class Filters extends Component {
       <div className="container">
         <div className="card bg-dark text-white">
           <div className="card-body">
-            <div className="card-header">{UserSession.exists() ? this.state.txtHeader : "Connexion requise"}</div>
+            <div className="card-header">
+              {UserSession.exists()
+                ? this.state.txtHeader
+                : "Connexion requise"}
+            </div>
             <SingleInputForm
               readOnly={UserSession.exists()}
               id={SINCE_ID}

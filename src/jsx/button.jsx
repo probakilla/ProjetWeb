@@ -104,14 +104,14 @@ class LogOutButton extends Component {
   static get propTypes() {
     return {
       action: PropTypes.func
-    }
+    };
   }
 
   constructor(props) {
     super(props);
     this.state = {
       action: props.action
-    }
+    };
   }
 
   render() {

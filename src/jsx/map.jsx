@@ -70,7 +70,7 @@ class WorldMap extends Component {
     let labs = [];
     array.forEach(element => {
       let line = JSON.stringify(element).split(",");
-      let lab = line[line.length - 1].replace("\"]", "").replace("\"", "");
+      let lab = line[line.length - 1].replace('"]', "").replace('"', "");
       if (!labs.includes(lab)) labs.push(lab);
     });
     display(<LabList list={labs} />, "lab-list");
