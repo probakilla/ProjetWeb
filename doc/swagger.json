@@ -42,7 +42,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "Register success"
           },
           "400": {
@@ -79,7 +79,7 @@
           }
         ],
         "responses": {
-          "201": {
+          "202": {
             "description": "User connected"
           },
           "401": {
@@ -91,6 +91,45 @@
             "BasicAuth": []
           }
         ]
+      }
+    },
+    "/user/:uname": {
+      "put": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Update the labs field of an user",
+        "description": "",
+        "operationId": "updateUserLab",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "plain text"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uname",
+            "type": "string",
+            "required": true,
+            "description": "The username of the user to update"
+          },
+          {
+            "in": "body",
+            "name": "data",
+            "description": "The new name of the labs to put in the database",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateLab"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Laboratory updated"
+          }
+        }
       }
     }
   },
@@ -114,6 +153,15 @@
         "labs": {
           "type": "string",
           "description": "The laboratory attached to the user"
+        }
+      }
+    },
+    "UpdateLab": {
+      "type": "object",
+      "properties": {
+        "labs": {
+          "type": "string",
+          "description": "The new name of the labs to put in the database"
         }
       }
     }
