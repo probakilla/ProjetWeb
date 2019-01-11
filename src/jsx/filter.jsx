@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import RequestsHal from "../js/requestsHal";
 import Main from "../index";
 import UserSession from "../js/userSession";
+import "../css/filter.css";
 import {
   SingleInputForm,
   DoubleInputForm,
@@ -25,19 +26,18 @@ class Filters extends Component {
       txtHeader: "Filtres",
       minDate: null
     };
-    this.sinceFilter = this.sinceFilter.bind(this);
     this.timeSlotFilter = this.timeSlotFilter.bind(this);
-    this.countryFilter = this.countryFilter.bind(this);
-    this.labFilter = this.labFilter.bind(this);
-    this.doubleDateCheck = this.doubleDateCheck.bind(this);
+    this.render = this.render.bind(this);
   }
 
   componentDidMount = async function() {
     if (UserSession.exists()) {
-      let minDate = await RequestsHal.fetchMinCollabDateLab(UserSession.getLabs());
-      this.setState({ minDate: minDate })
+      let minDate = await RequestsHal.fetchMinCollabDateLab(
+        UserSession.getLabs()
+      );
+      this.setState({ minDate: minDate });
     }
-  }
+  };
 
   doubleDateCheck() {
     let minDate = this.state.minDate;
@@ -131,30 +131,31 @@ class Filters extends Component {
   };
 
   render() {
-    let minDate = this.state.minDate
+    let minDate = this.state.minDate;
     let sinceInput = [];
     let doubleInput = [];
-    if (minDate != null)
-    {
-      sinceInput.push(<SingleInputForm
-        readOnly={UserSession.exists()}
-        id={SINCE_ID}
-        type="number"
-        label="Depuis"
-        onClick={this.sinceFilter}
-        min={minDate}
-        max={MAX_DATE}
-      />);
-      doubleInput.push(<DoubleInputForm
-        readOnly={UserSession.exists()}
-        idFrom={FROM_ID}
-        idTo={TO_ID}
-        label="Plage d'année"
-        onClick={this.timeSlotFilter}
-        min={minDate}
-        max={MAX_DATE}
-        onChange={this.doubleDateCheck}
-      />);
+    if (minDate != null) {
+      sinceInput.push(
+        <SingleInputForm
+          id={SINCE_ID}
+          type="number"
+          label="Depuis"
+          onClick={this.sinceFilter}
+          min={minDate}
+          max={MAX_DATE}
+        />
+      );
+      doubleInput.push(
+        <DoubleInputForm
+          idFrom={FROM_ID}
+          idTo={TO_ID}
+          label="Plage d'année"
+          onClick={this.timeSlotFilter}
+          min={minDate}
+          max={MAX_DATE}
+          onChange={this.doubleDateCheck}
+        />
+      );
     }
     return (
       <div className="container">
@@ -165,28 +166,35 @@ class Filters extends Component {
                 ? this.state.txtHeader
                 : "Connexion requise"}
             </div>
-             {sinceInput}
-            <hr />
-            <SingleInputForm
-              readOnly={UserSession.exists()}
-              id={LAB_ID}
-              type="text"
-              label="Laboratoire"
-              onClick={this.labFilter}
-              defaultValue={
-                UserSession.exists()
-                  ? UserSession.getLabs()
-                  : "Aucun laboratoire séléctionné"
-              }
-            />
-            <hr />
-             {doubleInput}
-            <hr />
-            <SingleSelectInputForm
-              id={COUNTY_ID}
-              label="Filtre de pays"
-              onClick={this.countryFilter}
-            />
+            {UserSession.exists() ? (
+              <div>
+                {sinceInput}
+                <hr />
+                <SingleInputForm
+                  id={LAB_ID}
+                  type="text"
+                  label="Laboratoire"
+                  onClick={this.labFilter}
+                  defaultValue={
+                    UserSession.exists()
+                      ? UserSession.getLabs()
+                      : "Aucun laboratoire séléctionné"
+                  }
+                />
+                <hr />
+                {doubleInput}
+                <hr />
+                <SingleSelectInputForm
+                  id={COUNTY_ID}
+                  label="Filtre de pays"
+                  onClick={this.countryFilter}
+                />
+              </div>
+            ) : (
+              <p className="container connection-text">
+                Filtres non disponibles hors connexion
+              </p>
+            )}
           </div>
         </div>
       </div>

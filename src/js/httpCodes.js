@@ -18,6 +18,9 @@ class HttpCodes {
   static get UNAUTHORIZED() {
     return 401;
   }
+  static get NOT_FOUND() {
+    return 404;
+  }
 }
 
 module.exports = HttpCodes;

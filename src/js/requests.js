@@ -43,7 +43,7 @@ async function sendUser(data) {
  * Send a request to the internal API in order to change the lab of the user
  * in the database.
  * @param {string} username The user to change is labs.
- * @param {string} labName The new name to set for labs. 
+ * @param {string} labName The new name to set for labs.
  */
 async function updateUserLab(username, labName)
 {
