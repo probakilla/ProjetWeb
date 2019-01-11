@@ -9,6 +9,7 @@ const collabUrl =
   nbRespPerReq;
 const checkLabExistsUrl =
   "https://api.archives-ouvertes.fr/search/?fl=*&rows=1";
+const minCollabLabUrl = "https://api.archives-ouvertes.fr/search/?fl=*&q=collaboration_s:*&rows=1&sort=releasedDateY_i asc";
 const provider = new EsriProvider();
 let labArray = [];
 let collabInfoArray = [];
@@ -30,6 +31,19 @@ async function fetchLabCollab(name) {
       await labJsonToArray(myJson.response.docs);
     });
   return labArray;
+}
+
+async function fetchMinCollabDateLab(labName) {
+  let res;
+  let reqName = '&fq=labStructName_sci:"' + labName + '"';
+  await fetch(minCollabLabUrl + reqName)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(async function(myJson) {
+    res = myJson.response.docs[0].releasedDateY_i;
+  });
+return res;
 }
 
 async function fetchCollabBetweenLab(labName1, labName2) {
@@ -150,5 +164,6 @@ export default {
   fetchCollabByCountry: fetchCollabByCountry,
   getCollabInfoArray: getCollabInfoArray,
   checkLabExists: checkLabExists,
-  fetchCollabBetweenLab: fetchCollabBetweenLab
+  fetchCollabBetweenLab: fetchCollabBetweenLab,
+  fetchMinCollabDateLab: fetchMinCollabDateLab
 };
