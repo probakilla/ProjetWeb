@@ -1,5 +1,4 @@
 import RequestsHal from "../js/requestsHal";
-import UserSession from "../js/userSession";
 
 const HttpCodes = require("./httpCodes");
 const URL_USER =
@@ -62,7 +61,6 @@ async function updateUserLab(username, labName)
   }).then(res => {
       ret = res;
     });
-  UserSession.updateUser(username, labName)
   return ret;
 }
 

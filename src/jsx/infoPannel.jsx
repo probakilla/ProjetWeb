@@ -23,12 +23,15 @@ class SessionData extends Component {
 
   changeLab = async function()
   {
-    const correct = await request.updateUserLab(UserSession.getName(), getInputValue("labs-input"));
+    const username = UserSession.getName()
+    const labName = getInputValue("labs-input")
+    const correct = await request.updateUserLab(username, labName);
     if (!correct)
     {
       this.badLab("Le laboratoire entré n'existe pas");
       return;
     }
+    UserSession.updateUser(username, labName)
     location.reload();
   }
 
