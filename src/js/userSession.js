@@ -11,7 +11,7 @@ class UserSession {
 
   static connectUser(username, labs) {
     sessionStorage.setItem(USERNAME, username);
-    sessionStorage.setItem(LABS, labs);
+    sessionStorage.setItem(LABS, labs.trim());
   }
 
   static clear() {
@@ -20,7 +20,7 @@ class UserSession {
 
   static updateUser(username, labs) {
     sessionStorage.setItem(USERNAME, username);
-    sessionStorage.setItem(LABS, labs);
+    sessionStorage.setItem(LABS, labs.trim());
   }
 
   static getName() {
