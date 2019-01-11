@@ -9,7 +9,7 @@
   "tags": [
     {
       "name": "User",
-      "description": "Credential managing for the users of the website"
+      "description": "Credential managing for the users of the laboratories collaboration website"
     }
   ],
   "schemes": [
@@ -56,8 +56,8 @@
         "tags": [
           "user"
         ],
-        "summary": "Find a user by its id and password in order to connect to the website",
-        "description": "If the username exists AND the password is correct, creates a session with its personal data (username and laboratories)",
+        "summary": "Used for the connection",
+        "description": "Check if the username exists and if the password given is correct",
         "operationId": "userCredentials",
         "produces": [
           "plain text"
@@ -83,7 +83,7 @@
             "description": "User connected"
           },
           "401": {
-            "description": "Invalid username or password supplied or user not found"
+            "description": "Invalid username or password supplied, or user not found"
           }
         },
         "security": [
