@@ -11,7 +11,7 @@
 
 ## Liens du projet
 
-La docuemntation de l'API se trouve en format .json ou .html dans le dossier doc/
+La documentation de l'API se trouve en format .json ou .html dans le dossier doc/
 ou directement à l'adresse suivante :
 [Lien vers la documentation](http://julien.pilleux.emi.u-bordeaux.fr/doc/doc.html)
 
