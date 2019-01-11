@@ -1,0 +1,125 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a simple API managing the users credentials.",
+    "version": "1.0.0",
+    "title": "Laboratories collaboration API"
+  },
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "User",
+      "description": "Credential managing for the users of the website"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/user": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Register an user in the database",
+        "description": "",
+        "operationId": "userRegister",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "plain text"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "description": "The user to register in the database",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Register success"
+          },
+          "400": {
+            "description": "User name already exists"
+          }
+        }
+      }
+    },
+    "/user/:uname&:pswd": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Find a user by its id and password in order to connect to the website",
+        "description": "If the username exists AND the password is correct, creates a session with its personal data (username and laboratories)",
+        "operationId": "userCredentials",
+        "produces": [
+          "plain text"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uname",
+            "type": "string",
+            "required": true,
+            "description": "The username of the user to fetch"
+          },
+          {
+            "in": "path",
+            "name": "pswd",
+            "type": "string",
+            "required": true,
+            "description": "The password associated with the username"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User connected"
+          },
+          "401": {
+            "description": "Invalid username or password supplied or user not found"
+          }
+        },
+        "security": [
+          {
+            "BasicAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "BasicAuth": {
+      "type": "basic"
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "The user name displayed in the website"
+        },
+        "password": {
+          "type": "string",
+          "description": "The user password used for connection"
+        },
+        "labs": {
+          "type": "string",
+          "description": "The laboratory attached to the user"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "The link to the website using this API",
+    "url": "https://collab-lab.herokuapp.com/"
+  }
+}
