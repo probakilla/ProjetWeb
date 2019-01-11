@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Button } from "./button";
 import UserSession from "../js/userSession";
+import {SingleInputForm} from "./input";
+import request from "../js/requests";
 import "../css/infoPannel.css";
 
 const labNameIndex = 0;
@@ -9,9 +11,31 @@ const releasedDateIndex = 1;
 const collaboratorsIndex = 2;
 let selectedLabArrayInfo;
 
+function getInputValue(id) {
+  return document.getElementById(id).value;
+}
+
 class SessionData extends Component {
   constructor(props) {
     super(props);
+    this.changeLab = this.changeLab.bind(this);
+  }
+
+  changeLab = async function()
+  {
+    const correct = await request.updateUserLab(UserSession.getName(), getInputValue("labs-input"));
+    if (!correct)
+    {
+      this.badLab("Le laboratoire entré n'existe pas");
+      return;
+    }
+    location.reload();
+  }
+
+  badLab(message) {
+    let labInput = document.getElementById("labs-input");
+    labInput.classList.add("is-invalid");
+    labInput.innerHTML = message; // Ne marche pas
   }
 
   render() {
@@ -20,6 +44,17 @@ class SessionData extends Component {
         <h4>
           Votre laboratoire : {UserSession.getLabs()} <br />
         </h4>
+        <SingleInputForm         
+        id="labs-input"
+        type="text"
+        label="Changer votre laboratoire"
+        onClick={this.changeLab}
+        defaultValue={
+          UserSession.exists()
+            ? UserSession.getLabs()
+            : "Aucun laboratoire séléctionné"
+        }
+        />
         <hr />
         <h5>Liste des collaborations :</h5>
         <div id="lab-list" className="container-fluid" />

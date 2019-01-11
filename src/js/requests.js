@@ -1,4 +1,5 @@
 import RequestsHal from "../js/requestsHal";
+import UserSession from "../js/userSession";
 
 const HttpCodes = require("./httpCodes");
 const URL_USER =
@@ -39,6 +40,33 @@ async function sendUser(data) {
 }
 
 /**
+ * Send a request to the internal API in order to change the lab of the user
+ * in the database.
+ * @param {string} username The user to change is labs.
+ * @param {string} labName The new name to set for labs. 
+ */
+async function updateUserLab(username, labName)
+{
+  let ret;
+  const params = "/" + username;
+  let data = JSON.stringify({
+    labs: labName
+  });
+  if (!(await RequestsHal.checkLabExists(labName))) return false;
+  await fetch(URL_USER + params, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: data
+  }).then(res => {
+      ret = res;
+    });
+  UserSession.updateUser(username, labName)
+  return ret;
+}
+
+/**
  * Send a request to the internal API in order to check if a user exists and if
  * its password is correct.
  * @param {string} params The URI arguments of the GET request. The format must
@@ -71,5 +99,6 @@ export default {
   userConnect: userConnect,
   INCRIPTION_OK: INCRIPTION_OK,
   BAD_PASSWORD: BAD_PASSWORD,
-  BAD_LAB: BAD_LAB
+  BAD_LAB: BAD_LAB,
+  updateUserLab: updateUserLab
 };

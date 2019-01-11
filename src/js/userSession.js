@@ -18,6 +18,11 @@ class UserSession {
     sessionStorage.clear();
   }
 
+  static updateUser(username, labs) {
+    sessionStorage.setItem(USERNAME, username);
+    sessionStorage.setItem(LABS, labs);
+  }
+
   static getName() {
     if (this.exists()) return sessionStorage.getItem(USERNAME);
   }

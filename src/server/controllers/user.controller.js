@@ -47,6 +47,20 @@ exports.userRegister = (req, res) => {
   });
 };
 
+exports.updateUserLab = (req, res) => {
+  User.findOneAndUpdate(
+    { username: req.params.uname },
+    {
+      $set: {
+        labs: req.body.labs
+      }
+    },(err, result) => {
+      if (err) return res.send(err)
+      res.send(result)
+    }
+  );
+}
+
 exports.userCredentials = (req, res) => {
   User.findOne(
     { username: req.params.uname },
