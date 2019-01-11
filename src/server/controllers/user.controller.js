@@ -55,8 +55,8 @@ exports.updateUserLab = (req, res) => {
         labs: req.body.labs
       }
     },(err, result) => {
-      if (err) return res.send(err)
-      res.send(result)
+      if (err) handleError(err, res);
+      res.status(HttpCodes.ACCEPTED).send(result)
     }
   );
 }
