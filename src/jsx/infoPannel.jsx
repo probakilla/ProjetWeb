@@ -16,10 +16,13 @@ class SessionData extends Component {
 
   render() {
     return (
-      <div className="container">
-        <p>
+      <div className="container-fluid">
+        <h4>
           Votre laboratoire : {UserSession.getLabs()} <br />
-        </p>
+        </h4>
+        <hr />
+        <h5>Liste des collaborations :</h5>
+        <div id="lab-list" className="container-fluid" />
       </div>
     );
   }
@@ -31,31 +34,36 @@ class InfoData extends Component {
   }
 
   render() {
-    let infoLab = []
+    let infoLab = [];
     infoLab.push(
       <div className="container">
-      <strong>
-        Collaborations entre: {UserSession.getLabs()} et {selectedLabArrayInfo[labNameIndex]}:
-      </strong>
-    </div>)
-    for (let i = 1; i < selectedLabArrayInfo.length; ++i)
-    {
+        <strong>
+          Collaborations entre: {UserSession.getLabs()} et{" "}
+          {selectedLabArrayInfo[labNameIndex]}:
+        </strong>
+      </div>
+    );
+    for (let i = 1; i < selectedLabArrayInfo.length; ++i) {
       let stringCollaborators = "";
-      for (let j = 0; j < selectedLabArrayInfo[i][collaboratorsIndex].length; ++j)
-      {
-        stringCollaborators += "[" + selectedLabArrayInfo[i][collaboratorsIndex][j] + "] ";
+      for (
+        let j = 0;
+        j < selectedLabArrayInfo[i][collaboratorsIndex].length;
+        ++j
+      ) {
+        stringCollaborators +=
+          "[" + selectedLabArrayInfo[i][collaboratorsIndex][j] + "] ";
       }
       infoLab.push(
         <div key={i} className="container">
-        <p className="collab-info">
-          Nom de l&apos;article : {selectedLabArrayInfo[i][titleIndex]} <br />
-          Date de sortie : {selectedLabArrayInfo[i][releasedDateIndex]} <br />
-          Collaborateurs : {stringCollaborators}
-        </p>
-      </div>
-      )
+          <p className="collab-info">
+            Nom de l&apos;article : {selectedLabArrayInfo[i][titleIndex]} <br />
+            Date de sortie : {selectedLabArrayInfo[i][releasedDateIndex]} <br />
+            Collaborateurs : {stringCollaborators}
+          </p>
+        </div>
+      );
     }
-    return (infoLab);
+    return infoLab;
   }
 }
 
@@ -73,16 +81,21 @@ class InfoPannel extends Component {
   }
 
   deselection() {
-    this.setState({data: <SessionData />, resetButton: []})
+    this.setState({ data: <SessionData />, resetButton: [] });
   }
 
-  updateInfoPannel(data){
-    selectedLabArrayInfo = data
-    this.setState({data: <InfoData />, resetButton: <Button
-      text="Réinitialiser la sélection"
-      style="btn btn-block btn-danger btn-cancel"
-      action={this.deselection}
-    />})
+  updateInfoPannel(data) {
+    selectedLabArrayInfo = data;
+    this.setState({
+      data: <InfoData />,
+      resetButton: (
+        <Button
+          text="Réinitialiser la sélection"
+          style="btn btn-block btn-danger btn-cancel"
+          action={this.deselection}
+        />
+      )
+    });
   }
 
   render() {
@@ -95,7 +108,7 @@ class InfoPannel extends Component {
               {UserSession.exists() ? this.state.data : this.state.infotext}
             </span>
             <br />
-              {this.state.resetButton}
+            {this.state.resetButton}
           </div>
         </div>
       </div>
